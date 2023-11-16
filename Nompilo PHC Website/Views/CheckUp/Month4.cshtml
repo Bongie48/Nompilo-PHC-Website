@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 4th Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 4th Month</h1>
+    
+    <h3>Nutrition</h3>
+    <p>
+        In the 4th month of pregnancy, your baby continues to grow. Maintain a healthy diet to support their development. Consider the following:
+    </p>
+    <ul>
+        <li>Continue to include a variety of nutrient-rich foods in your diet.</li>
+        <li>Increase your intake of calcium for strong bones and teeth. Dairy products and leafy greens are good sources.</li>
+        <li>Ensure you're getting enough iron to prevent anemia. Foods like lean red meat, beans, and spinach can help.</li>
+        <li>Consume plenty of fiber to prevent constipation, including whole grains and fresh fruits.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Staying active in the 4th month is important for both your health and your baby's. Here are some safe exercises to consider:
+    </p>
+    <ul>
+        <li>Low-impact aerobic exercises like swimming or stationary cycling can help maintain cardiovascular fitness.</li>
+        <li>Yoga and stretching exercises can relieve tension and improve flexibility.</li>
+        <li>Continue with strength training to support muscle tone and overall strength.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before starting any new exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="5">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="3">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

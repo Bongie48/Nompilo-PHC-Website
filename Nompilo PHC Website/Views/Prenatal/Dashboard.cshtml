@@ -1,0 +1,313 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Booking>;
+@{
+    Layout = null;
+    int c = 0;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+    foreach (var books in Model)
+    {
+        if (Model.Count() > 0)
+        {
+            foreach (var book in Model)
+            {
+    
+                string service = books.services;
+                string names = User.Identity?.Name.ToString();
+                DateTime date = books.datetimes;
+                if (names == books.email && service =="Pre-NatalCare")
+                {
+                    c=c+1;
+                }
+                break;
+
+            }
+
+
+        }
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    @* <link rel="stylesheet" href="~/css/dashboardstyle.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+                            background: #dfe9f5;
+                        }
+                        */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 100vh;
+            left: 0;
+            background-color: #029EFF;
+            /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        nav .fa {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        section {
+            width: 80%;
+        }
+
+        #back {
+            border: double;
+            border-radius: 7px;
+            font-size: 15px;
+            padding: 10px;
+            background-color: lightcoral;
+            cursor: pointer;
+            bottom: 0;
+        }
+        #appointmen{
+            margin:auto;
+/*             border:solid; */
+            width:50%;
+            background-color:lightblue;
+            border-radius: 7px;
+            padding:10px;
+        }
+
+        #prenatalheading{
+            font-weight:bold;
+            font-size: 40px;
+            font-family:'Times New Roman', Times, serif;
+            text-decoration-line:underline;
+        }
+        #journey{
+            float:right;
+            border-radius: 7px;
+            padding: 10px;
+
+        }
+        #date{
+            border-radius: 7px;
+            padding: 10px;
+            background-image: url('duedate.jpg');
+        }
+        #links{
+            background-color: lightblue;
+            color:black;
+            font-weight:bold;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Prenatal" asp-action="Dashboard">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Prenatal" asp-action="Calculator">
+                        <i class="fas fa-calendar-week"></i>
+                        <span class="nav-item">Due-Date Calculator</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Prenatal" asp-action="Support">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="nav-item">Journey Support</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="docTests" asp-action="PatientTestList">
+                        <i class="fas fa-flask"></i> <!-- You can change the icon as needed -->
+                        <span class="nav-item">Lab Test</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Checkup" asp-action="Checkup">
+                        <i class="fas fa-stethoscope"></i> <!-- You can change the icon as needed -->
+                        <span class="nav-item">Checkup</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Booking" asp-action="ViewBookings">
+                        <i class="fas fa-calendar"></i> <!-- You can change the icon as needed -->
+                        <span class="nav-item">Bookings</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Home" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div style="text-align:center">
+                <h1 id="prenatalheading">Welcome to Prenatal Care</h1>
+                <hr />
+                <br />
+            </div>
+            @if (c > 0)
+            {
+                <div class="card mb-3" id="appointmen">
+                    <a asp-controller="Booking" asp-action="ViewApp"><img class="card-img-top" src="~/css/prenatalappointments.png" alt="Card image cap" height="100"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">You have: @c appointments</h5>
+                        <p class="card-text">Please click on the picture above to view an appointment.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 10s  ago</small></p>
+                    </div>
+                </div>
+            }
+            else
+            {
+            <div class="card mb-3" id="appointmen">
+                <a asp-controller="Booking" asp-action="Booking"><img class="card-img-top" src="~/css/prenatalappointments.png" alt="Card image cap" height="100"></a>
+                <div class="card-body">
+                    <h5 class="card-title">You have: @c appointments</h5>
+                    <p class="card-text">Please click on the picture above to book an appointment.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 10s  ago</small></p>
+                </div>
+            </div>
+            }
+            
+            <br />
+            <br />
+                <div style="display:block" >
+                    <div class="card bg-dark text-white" id="date" style="width: 30rem;">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title">Curious to know your due date?</h4>
+                            <p class="card-text">Our easy-to-use pregnancy calculator is the number one most popular way to calculate your due date based on the date of your last menstrual period.</p>
+                        <a asp-controller="Prenatal" asp-action="Calculator" id="links">Due-date calculator                                          <img src="~/css/arrow-pointing-right.png" height="16" width="16" /></a>
+                            </div>
+                        </div>
+                    <div class="card bg-dark text-white" id="journey" style="width: 30rem;">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title">Supporting Your Pregnancy Journey</h4>
+                            <p class="card-text">From conception through birth and all the wonderful in-betweens, our nurses and pregnancy educators are here to provide the resources and information you need for the healthiest possible pregnancy.</p>
+                        <a asp-controller="Prenatal" asp-action="Support" id="links">Pregnancy support                                             <img src="~/css/arrow-pointing-right.png" height="16" width="16" /></a>
+                            </div>
+                        </div>
+                </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </section>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+﻿#h1chronic {
+    text-align: center;
+    vertical-align: central;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 50px;
+    margin: auto;
+    color: transparent;
+  /* background-image: url('chronicmedication.jpg');*/
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+#hold {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    width: 500px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#showPopupButton {
+    width: 100%;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #007bff;
+}
+
+#inputes {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 18px;
+}
+

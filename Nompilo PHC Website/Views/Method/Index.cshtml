@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Nompilo_PHC_Website.Models.TestMethod>
+
+@{
+    ViewData["Title"] = "Test Methods";
+    Layout = "~/Views/Shared/_LabLayout.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<p>
+    <h2 class="bg bg-info text-center"><i class="fa fa-table" aria-hidden="true" style="font-size:48px;color:forestgreen"></i>Test Method List</h2>
+    <a asp-action="Insert" class="btn btn-sm btn-primary">Add New Method</a><br />
+    <form method="post">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <input type="text" name="search" placeholder="Enter Keyword" class="inputComn form-control" />
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <div class="searchIcon">
+                        <button type="submit" class="searchBtn btn btn-success">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</p>
+@if (TempData["successAlert"] != null)
+{
+    <p class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success:</strong>   @TempData["successAlert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </p>
+}
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="alert">
+        You currently do not have any test method records
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.MethodName)
+                </th>
+                <th>
+                    Test For
+                </th>
+                <th>
+                    Instrument
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MethodName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tests.testfor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Instruments.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+                    <td>
+
+                        <a asp-action="Update" asp-route-id="@item.methodId" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.methodId" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                                                
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+
+        </tbody>
+
+
+
+    </table>
+}

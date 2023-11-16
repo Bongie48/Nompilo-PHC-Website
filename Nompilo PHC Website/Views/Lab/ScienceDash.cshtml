@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNetCore.Identity
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="~/css/Layoutstylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+    <div class="sibar-container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo" style="color:black">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item" asp-controller="Lab" asp-action="ScienceDash" style="color:black">
+                        <i class="fas fa-home" style="color:black"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item" asp-controller="Instrument" asp-action="AddOrEdit" style="color:black">
+                        <i class="fas fa-vial" style="color:black"></i>
+                        <span class="nav-item">Test Instruments</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item" asp-controller="Method" asp-action="Insert" style="color:black">
+                        <i class="fas fa-notes-medical" style="color:black"></i>
+                        <span class="nav-item">Test Methods</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item" asp-controller="Results" asp-action="Insert" style="color:black">
+                        <i class="fas fa-chart-bar" style="color:black"></i>
+                        <span class="nav-item">Results</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item" asp-controller="Results" asp-action="Report" style="color:black">
+                        <i class="fa fa-file-text fas" style="color:black"></i>
+                        <span class="nav-item">Report</span>
+                    </a>
+                </li>
+                                        
+
+
+                <li>
+                    <a style="color:black" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" class="logout">
+                        <i class="fas fa-sign-out-alt" style="color:black"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-top">
+                <h1></h1>
+                <i class="fas fa-user-cog"></i>
+            </div>
+            <div class="main-skills">
+                <div class="card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Blood Sample</h3>
+
+                    <a class="button" asp-controller="Information" asp-action="BloodSample">More Information</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Urine Sample</h3>
+
+                    <a class="button" asp-controller="Information" asp-action="UrineSample">More Information</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Bodily Tissue Samples</h3>
+
+                    <a class="button" asp-controller="Information" asp-action="BodySample">More Information</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Stools Samples</h3>
+
+                    <a class="button" asp-controller="Information" asp-action="StoolSample">More Information</a>
+                </div>
+            </div>
+
+            <section class="main-course">
+                <h1>Types Of Testing</h1>
+                <div class="course-box">
+
+                    <div class="course">
+                        <div class="box">
+                            <h3>Patient Requests</h3>
+                            <a class="button" asp-controller="Information" asp-action="PatientRequest">More Information</a>
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="box">
+                            <h3>Forensic Requests</h3>
+
+                            <a class="button" asp-controller="Information" asp-action="AuthorityRequests">More Information</a>
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="box">
+                            <h3>Outbreak</h3>
+
+                            <a class="button" asp-controller="Information" asp-action="Outbreak">More Information</a>
+                            <i class="fas fa-disease"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </section>
+    </div>
+    
+</body>
+</html>
+
+

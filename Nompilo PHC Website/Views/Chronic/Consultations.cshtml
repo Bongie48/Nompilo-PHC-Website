@@ -1,0 +1,509 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Booking>;
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+    bool have = false;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/headingnform.css" rel="stylesheet" />
+    @*  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins"/> *@
+    <style>
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+                                            background: #dfe9f5;
+                                        }
+                                        */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 140vh;
+            left: 0;
+            background-color: #029EFF;
+            /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        #headingchr {
+            position: relative;
+            clear: left;
+            width: 100%;
+            height: 70px;
+            z-index: 0;
+            text-align: center;
+            border: 1px;
+            cursor: default;
+        }
+
+        #Commonchronic {
+            font-weight: bolder;
+            text-decoration-line: underline;
+        }
+
+        #h1chronic {
+            text-align: center;
+            vertical-align: central;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bolder;
+            font-size: 50px;
+            margin: auto;
+            color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        #chrcard {
+            display: inline-block;
+            width: 244px; /* Adjust the width as needed */
+            margin: 2px;
+            border: 1px solid #ccc;
+            height: 200px;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-color: lightblue;
+            box-shadow: 10px;
+        }
+
+        #chrcardholder {
+            align-self: center;
+            margin-left: 20%;
+            /*margin: auto;
+                                            width: 50%;*/
+            cursor: default;
+        }
+
+        /* Customize the label (the container) */
+        .containers {
+            margin-left: 1%;
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: default;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .containers input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .containers:hover input ~ .checkmark {
+            /*background-color: #ccc;*/
+            cursor: pointer;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .containers input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .containers input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .containers .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #myCheckbox:hover {
+            cursor: pointer;
+        }
+
+        #reminderpopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #reminderpopupclose {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #op {
+            display: inline-block;
+            margin-right: 30px;
+            cursor: pointer;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        #pres {
+            background-color: lightblue;
+        }
+
+        #optionscontainer {
+            margin-left: 30%;
+        }
+
+        #seeonline {
+            width: 70%;
+            height: 40px;
+            border-radius: 7px;
+            background-color: lightblue;
+            text-align: left;
+            font-weight: bold;
+            margin-left: 10px;
+            
+        }
+
+            #seeonline:hover {
+                font-weight: bolder;
+                color: black;
+                text-transform: none;
+                text-decoration-thickness: from-font;
+                text-decoration: wavy;
+            }
+
+        #phantsi {
+            margin-left: 150px;
+        }
+
+            #phantsi:hover {
+                transform: rotate(180deg);
+            }
+
+        section {
+            width: 80%;
+        }
+
+        #back {
+            border: double;
+            border-radius: 7px;
+            font-size: 15px;
+            padding: 10px;
+            background-color: lightcoral;
+            cursor: pointer;
+        }
+
+        #reminder {
+            background-color: #eee;
+        }
+
+        #hold {
+            margin: auto;
+            width: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            padding: 10px;
+            border-radius: 10px;
+            color: black;
+            width: 500px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        #showPopupButton {
+            width: 100%;
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            border: 1px solid transparent;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+        }
+
+        #inputes {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #droplinks {
+            display: block;
+            overflow-wrap: break-word;
+            overflow: hidden;
+            height: 70px;
+            border-radius: 7px;
+            background-color: lightblue;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            color: white;
+            width: 70%;
+            margin-left: 10px;
+            border:solid;
+            color:black;
+        }
+        #videolink {
+            display:inline;
+            color:blue
+        }
+        /*         input:invalid + span:after {
+                                    content: '✖';
+                                }
+
+                                input:valid + span:after {
+                                    content: '✓';
+                                } */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Chronic">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li >
+                    <a asp-controller="Chronic" asp-action="ReminderOptin">
+                        <i class="fas fa-bell"></i>
+                        <span class="nav-item">Reminder</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Prescription">
+                        <i class="fas fa-pills"></i>
+                        <span class="nav-item">Prescription Details</span>
+                    </a>
+                </li>
+                <li id="reminder">
+                    <a asp-controller="Chronic" asp-action="Consultations">
+                        <i class="fas fa-video"></i>
+                        <span class="nav-item">Online Video Consultations</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="ProgressStats">
+                        <i class="fas fa-laptop-medical"></i>
+                        <span class="nav-item">Health Progression Stats</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Home" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div id="headingchr">
+                <br />
+                <p id="h1chronic">Online consultations appointments</p>
+            </div>
+            <br />
+            <br />
+            @{
+            if (Model.Count() > 0)
+            {
+                @foreach (var book in Model)
+                {
+                    string meeting = book.services;
+                    meeting = meeting + " meeting";
+                    if (book.email == User.Identity?.Name.ToString() && book.status.ToLower() == "approved" && book.services.ToLower() == "chronic medication online")
+                    {
+                        <br />
+                        <button id="seeonline" onclick="Links()" style="background-color:#228B22">
+
+                            @meeting ||  @book.datetimes        <img id="phantsi" src="~/css/dropdownarrow.png" width="20" height="20" />
+                        </button>
+                        <br />
+                        <br />
+                        <div id="droplinks">
+                            <p>Link:<a id="videolink" target="_blank" href="https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_NzU0MmZiNGMtMmU4NS00M2Q2LThmMTItMDQyYmUyOTk1MDNl%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%2522bd70eeb3-a537-435a-937c-7cd330dc74d8%2522%252c%2522Oid%2522%253a%25220a1f82c6-2e8c-4164-be4e-88f56e6a8529%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=c2d1c923-d3aa-4181-bca2-f4997709498f&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true" id="link">https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_NzU0MmZiNGMtMmU4NS00M2Q2LThmMTItMDQyYmUyOTk1MDNl%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%2522bd70eeb3-a537-435a-937c-7cd330dc74d8%2522%</a></p>
+                        </div>
+                        <br />
+                        have = true;
+                    }
+                    else if(book.email == User.Identity?.Name.ToString() && book.services.ToLower() == "chronic medication online")
+                    {
+                        <br />
+                        <button id="seeonline" onclick="Links()">
+
+                            @meeting ||  @book.datetimes        <img id="phantsi" src="~/css/dropdownarrow.png" width="20" height="20" />
+                        </button>
+                        <br />
+                        <br />
+                        <div id="droplinks">
+                            <p>Waiting for doctors conformation <img src="~/css/loading-gif.gif" width="25" height="25" style="display:inline" /> <p />
+                        </div>
+                        <br />
+                        have = true;
+                    }
+                }
+                if (have==false)
+                {
+                    <h2 style="text-align:center">Sorry you have no active appointments</h2>
+                }
+            }
+            else if(Model.Count()==0)
+            {
+                <h2 style="text-align:center">Sorry you have no active appointments</h2>
+            }
+            }
+        </section>
+</body>
+</html>

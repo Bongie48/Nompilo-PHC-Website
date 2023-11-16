@@ -1,0 +1,50 @@
+﻿@model Nompilo_PHC_Website.Models.Instrument
+
+@{
+    ViewData["Title"] = "Instrument Details";
+}
+
+<body id="home">
+    <h1 id="bookh1">Instrument Details</h1>
+
+
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.name)
+            </dd>
+        
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.description)
+            </dd>
+        
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.status)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.status)
+            </dd>
+        
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tests)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayNameFor(model => model.Tests.testfor)
+            </dd>
+        </dl>
+    </div>
+
+    <div>
+        <a asp-action="DInstractions">Back to List</a>
+    </div>
+
+    <br />
+    <a asp-controller="Booking" asp-action="Booking"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

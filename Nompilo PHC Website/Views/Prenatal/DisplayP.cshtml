@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PrenatalPatients>
+@{
+    ViewData["Title"] = "DisplayP";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+    <h1 id="bookh1">Pregnant Patients</h1>
+    <table class="table table-dark">
+        @{
+            if (Model.Count() > 0)
+            {
+                <thead class="table-primary">
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Last Name</th>
+                        <th>Reference Date</th>
+                        <th>Months Pregnant</th>
+                        <th>Weight</th>
+                        <th>Urine Test</th>
+                    </tr>
+                </thead>
+                @foreach (var preg in Model)
+                {
+                    <tr>
+                        <td>@preg.Name</td>
+                        <td>@preg.LastName</td>
+                        <td>@preg.Date</td>
+                        <td>@preg.Months</td>
+                        <td>@preg.Weight</td>
+                        <td>@preg.Urine</td>
+
+                    </tr>
+                }
+            }
+            else{
+                <h2 style="text-align:center">Sorry you have no added patients</h2>
+            }
+        }
+    </table>
+    <br />
+    <a asp-action="Patients" asp-controller="Prenatal"><button class="w-100 btn btn-lg btn-primary">Add patient</button></a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <a asp-action="DocDash" asp-controller="Prenatal"><button id="back" class="btn-danger">Back</button></a>
+
+</body>

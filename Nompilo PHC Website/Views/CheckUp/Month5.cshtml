@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Prenatal Care - 5th Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 5th Month</h1>
+   
+    <h3>Nutrition</h3>
+    <p>
+        In the 5th month of pregnancy, your baby's growth continues. Maintain a healthy diet to support their development. Consider the following:
+    </p>
+    <ul>
+        <li>Continue to consume a balanced diet with a focus on fruits, vegetables, and whole grains.</li>
+        <li>Ensure you're getting enough protein from sources like lean meat, poultry, and legumes.</li>
+        <li>Include foods rich in omega-3 fatty acids, like salmon, for brain and vision development in your baby.</li>
+        <li>Stay hydrated by drinking plenty of water throughout the day.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Staying active in the 5th month is important for both your health and your baby's. Here are some safe exercises to consider:
+    </p>
+    <ul>
+        <li>Continue low-impact aerobic exercises such as walking or swimming.</li>
+        <li>Gentle prenatal yoga can help with relaxation and flexibility.</li>
+        <li>Strength training exercises can help maintain muscle tone and strength.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before starting any new exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="6">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="4">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+
+

@@ -1,0 +1,47 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using Nompilo_PHC_Website.Data
+@inject SignInManager<DataGeeksUser> SignInManager
+@inject UserManager<DataGeeksUser> UserManager
+
+<ul class="navbar-nav" >
+@if (SignInManager.IsSignedIn(User))
+    {
+        string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+        string name = User.Identity?.Name.ToString();
+        if (name.ToLowerInvariant().Contains(special))
+        {
+            name= name.Replace(special, " ");
+        }
+        else if (name.ToLowerInvariant().Contains(special1))
+        {
+            name = name.Replace(special1, " ");
+        }
+        else if (name.ToLowerInvariant().Contains(special2))
+        {
+            name = name.Replace(special2, " ");
+        }
+        else if (name.ToLowerInvariant().Contains(special3))
+        {
+            name = name.Replace(special3, " ");
+        }
+
+        <li class="nav-item">
+            <a class="nav-link btn btn-link" asp-area="Identity" asp-page="/Account/Manage/Index" class="w-100 btn btn-lg btn btn-primary" id="hbutton1">Hello @name!</a>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link " class="w-100 btn btn-lg btn btn-danger" id="hbutton2">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+}
+</ul>

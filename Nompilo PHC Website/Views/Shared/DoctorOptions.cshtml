@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Nompilo_PHC_Website.Data
+@inject SignInManager<DataGeeksUser> SignInManager
+@inject UserManager<DataGeeksUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        if (User.Identity?.Name == "YolandaM@nompilo.co.za")
+        {
+            <li class="nav-item">
+
+                <a asp-area="" asp-controller="Prenatal" asp-action="DocDash"><button class="w-100 btn btn-lg btn-primary" id="hbutton">Prenatal Care</button></a>
+
+            </li>
+            <li class="nav-item">
+
+                <a asp-area="" asp-controller="" asp-action=""><button disabled class="w-100 btn btn-lg btn-primary" id="hbutton">Chronic Medication</button></a>
+
+            </li>
+        }
+
+        else if(User.Identity?.Name == "ThandileS@nompilo.co.za")
+        {
+            <li class="nav-item">
+
+                <a asp-area="" asp-controller="" asp-action=""><button disabled class="w-100 btn btn-lg btn-primary" id="hbutton">Prenatal Care</button></a>
+
+            </li>
+            <li class="nav-item">
+
+                <a asp-area="" asp-controller="Chronic" asp-action="DoctorDash"><button class="w-100 btn btn-lg btn-primary" id="hbutton">Chronic Medication</button></a>
+
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link" style="color:burlywood" asp-area="" asp-controller="Home" asp-action="Home">Not assigned a service</a>
+            </li>
+        }
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" style="color:burlywood" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+    }
+</ul>
+
+
+

@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "Support";
+}
+
+<head>
+<link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
+<style>
+    h1 {
+        font-weight: bold;
+        font-size: 4rem;
+        color: Black;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    h5{
+        font-weight:bold;
+    }
+    form{
+            margin: auto;
+            width: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            padding: 10px;
+            border-radius: 10px;
+            color: black;
+            text-align: left;
+            font-weight: bold;
+            font-size: 17px;
+            text-align: center;
+            background-color: lightpink;
+    }
+    #hidden1{
+        margin:auto;
+    }
+
+    #hidden2 {
+        margin: auto;
+    }
+
+    #hidden3 {
+        margin: auto;
+    }
+
+        hr {
+            background-color: rgb(243, 192, 192);
+            border-top: 3px dotted rgb(10, 53, 245);
+            height: 3px;
+        }
+    #baby1{
+        margin-left:30px;
+    }
+    #items{
+            margin: auto;
+    }
+    </style>
+    <script type="text/javascript">
+
+</script>
+</head>
+<body>
+    <div id="top">
+        <h1> Welcome Prenatal Care</h1>
+    </div>
+    <br />
+    <br />
+    <div class="card bg-dark text-white">
+        <img class="card-img" src="~/css/fetal.jpg" height="300" alt="Card image">
+@*         <div class="card-img-overlay">
+        </div> *@
+    </div>
+   <br />
+    <form>
+        <h5>Track your baby's development:</h5>
+        <br />
+        <label class="d-inline">Months Pregnant: </label>
+        <select id="months" onchange="track(this)">
+            <option selected disabled>--Select an option--</option>
+            <option value="1">1 or less Month</option>
+            <option value="2">2 Months</option>
+            <option value="3">3 Months</option>
+            <option value="4">4 Months</option>
+            <option value="5">5 Months</option>
+            <option value="6">6 Months</option>
+            <option value="7">7 Months</option>
+            <option value="8">8 Months</option>
+            <option value="9">9 Months</option>
+        </select>
+        <br />
+        <br />
+        <div class="card" style="width: 20rem; display:none;" id="hidden1">
+            <div class="card-body">
+                <h5 class="card-title">1st Trimester</h5>
+                <p class="card-text">After fertilization and implantation, your baby is just an embryo, that is a set of cells from which all organs and body parts will develop.</p>
+            </div>
+            <ol class="list-group list-group-flush">
+                <li class="list-group-item">Implantation occurs</li>
+                <li class="list-group-item">Positive Pregnancy Test</li>
+                <li class="list-group-item">Heartbeat detectable by ultrasound</li>
+            </ol>
+        </div>
+        <div class="card" style="width: 20rem; display:none;" id="hidden2">
+            <div class="card-body">
+                <h5 class="card-title">2nd Trimester</h5>
+                <p class="card-text">At the beginning of the second trimester, your baby is about 3 1/2 inches long and weigh about 1 1/2 ounces. Tiny, unique fingerprints are now in place, and the heart pumps 25 quarts of blood a day. </p>
+            </div>
+            <ol class="list-group list-group-flush">
+                <li class="list-group-item">Miscarrige risk decreases</li>
+                <li class="list-group-item">Gender reveal time</li>
+                <li class="list-group-item">Premature baby may survive</li>
+            </ol>
+        </div>
+        <div class="card" style="width: 20rem; display:none;" id="hidden3">
+            <div class="card-body">
+                <h5 class="card-title">3rd Trimester</h5>
+                <p class="card-text">By the end of the second trimester, your baby is about 14-1/2 inches and weighing around 2 pounds.</p>
+            </div>
+            <ol class="list-group list-group-flush">
+                <li class="list-group-item">Start talking to your baby</li>
+                <li class="list-group-item">Baby can breath</li>
+                <li class="list-group-item">Immune system is maturing</li>
+            </ol>
+        </div>
+    </form>
+    <br/>
+    <hr />
+    <div id="items">
+    <div class="card" style="width: 457px; height:524px;display:inline-block;">
+        <img class="card-img-top" src="~/css/one-year-old-baby-boy-eating-pasta-600x400.jpg" width="456" height="319" alt="Card image cap">
+        <div class="card-body">
+                <h5 class="card-title">Eating for Two: What to Eat When Pregnant</h5>
+                <p class="card-text">
+                    You are what you eat—and during your pregnancy, so is your baby. But that doesn’t mean you have to double your calories—instead, it’s about filling your diet with balanced nutrition…
+            </p>
+                <a href="https://newparent.com/baby/your-baby-bath-essentials/" target="_blank" class="btn btn-primary">CONTINUE READING</a>
+        </div>
+    </div>
+    <div class="card" style="width: 457px; height:524px;display:inline-block;" id="baby1">
+        <img class="card-img-top" src="~/css/Excer.jpg" width="456" height="319" alt="Card image cap">
+        <div class="card-body">
+                <h5 class="card-title">The Basics of Exercising During Pregnancy</h5>
+                <p class="card-text">Exercising during pregnancy isn’t just a good idea—it’s one of the smartest things you can do for both you and your baby. As long as you have no medically complicating…</p>
+                <a href="https://newparent.com/pregnancy/eating-for-two-what-to-eat-when-pregnant/" target="_blank" class="btn btn-primary">CONTINUE READING</a>
+        </div>
+    </div>
+    </div>
+    <br />
+    <a asp-controller="Prenatal" asp-action="Dashboard"><button class="btn-danger" id="back">Back</button></a>
+ </body>
+

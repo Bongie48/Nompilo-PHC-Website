@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FpregRefers>;
+@{
+    ViewData["Title"] = "Pregnantpatients";
+    Layout = "DoctorLayout";
+}
+
+<body id="home">
+    <h1 id="bookh1">Pregnant Patients</h1>
+    <table class="table table-dark">
+        @{
+            @if (Model.Count() > 0)
+            {
+            <thead class="table-primary">
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Last Name</th>
+                    <th>Reference Date</th>
+                </tr>
+            </thead>
+                @foreach (var fpreg in Model)
+                {
+                <tr>
+                    <td>@fpreg.RefName</td>
+                    <td>@fpreg.RefLastName</td>
+                    <td>@fpreg.RefDate</td>
+
+                </tr>
+                }
+            }
+            else
+            {
+                <h2 style="text-align:center">Sorry you have no refered patients</h2>
+            }
+            }
+    </table>
+    <br />
+    <a asp-action="Patients" asp-controller="Prenatal">
+        <button class="w-100 btn btn-lg btn-primary">Add patient</button>
+    </a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <a asp-action="DocDash" asp-controller="Prenatal"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+
+
+

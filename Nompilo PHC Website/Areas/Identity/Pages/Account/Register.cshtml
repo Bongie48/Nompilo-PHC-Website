@@ -1,0 +1,114 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+
+    <link href="~/css/RegSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="registration_form">
+            <div class="title">
+                Registration Form
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form">
+                <div class="form_wrap">
+                    <div class="input_grp">
+                        <div class="input_wrap">
+                            <label asp-for="Input.Name" id="labe"></label>
+                            <input type="text"  placeholder="Name" asp-for="Input.Name" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="input_wrap">
+                            <label asp-for="Input.Surname" id="labe"></label>
+                            <input type="text"  placeholder="Surname" asp-for="Input.Surname" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="input_grp">
+                        <div class="input_wrap">
+                            <label asp-for="Input.Gender" id="labe"></label>
+                            
+
+                            <select id="dropdowntipo" asp-for="Input.Gender" class="form-control" required>
+                                <option selected disabled>Please Select</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                
+                            </select>
+                            
+                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="input_wrap">
+                            <label asp-for="Input.Title" id="labe"></label>
+                            <select id="dropdowntipo" asp-for="Input.Title" class="form-control" required>
+                                <option selected disabled>Please Select</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Dr">Dr</option>
+                            </select>
+                            
+                            <span asp-validation-for="Input.Title" class="text-danger"></span>
+                        </div>
+                        </div>
+                    <div class="input_grp">
+                        <div class="input_wrap">
+                            <label asp-for="Input.PhoneNumber" id="labe"></label>
+                            <input type="number"  placeholder="Phone Number" asp-for="Input.PhoneNumber" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="input_wrap">
+                            <label asp-for="Input.Email" id="labe"></label>
+                            <input type="email"  placeholder="Email" asp-for="Input.Email" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="input_wrap">
+                        <label asp-for="Input.IDNo" id="labe"></label>
+                        <input type="number" placeholder="Identity Number" asp-for="Input.IDNo" class="form-control" autocomplete="off" minlength="10" maxlength="10" required>
+                        <span asp-validation-for="Input.IDNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="input_wrap">
+                        <label asp-for="Input.Address" id="labe"></label>
+                        <input type="text"  placeholder="Address" asp-for="Input.Address" class="form-control" autocomplete="off" required>
+                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+                    </div>
+                    <div class="input_grp">
+                        <div class="input_wrap">
+                            <label asp-for="Input.Password" id="labe"></label>
+                            <input type="password"  placeholder="Password" asp-for="Input.Password" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="input_wrap">
+                            <label asp-for="Input.ConfirmPassword" id="labe"></label>
+                            <input type="password"  placeholder="Confirm Password" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="off" required>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="input_wrap">
+                        <input id="registerSubmit" type="submit" value="Register Now" class="submit_btn">
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

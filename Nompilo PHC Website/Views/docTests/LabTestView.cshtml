@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Test>;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "View Test";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+    <h1 id="bookh1">View Appointments</h1>
+    <form asp-action="DLabTestList" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by services Type: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="DLabTestList">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <table class="table table-dark">
+
+        @if (Model.Count() > 0)
+        {
+            <thead class="table-primary">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pSurname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.testfor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.testStatus)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pSurname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.testfor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.testStatus)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.testId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <h2>Sorry you have no active appointments</h2>
+        }
+    </table>
+
+    <div id="popupDiv" class="popup">
+        <p>Appointment successfull canceled!!</p>
+        <button id="closePopupButton" asp-controller="Booking" asp-action="ViewApp">Close</button>
+    </div>
+    <br />
+    <a asp-controller="Booking" asp-action="Booking"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+

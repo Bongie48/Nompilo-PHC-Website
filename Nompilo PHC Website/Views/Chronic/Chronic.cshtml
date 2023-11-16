@@ -1,0 +1,478 @@
+﻿@model IEnumerable<Reminder>;
+@using Microsoft.AspNetCore.Identity
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+    TempData["Email"] = User.Identity?.Name.ToString();
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+            background: #dfe9f5;
+        }
+        */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 140vh;
+            left: 0;
+            background-color: #029EFF;
+           /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        #headingchr {
+            position: relative;
+            clear: left;
+            width:100%;
+            height: 70px;
+            z-index: 0;
+            text-align: center;
+            border: 1px;
+            background-image: url('chronicmedication.jpg');
+            cursor: default;
+        }
+
+        #Commonchronic {
+            font-weight: bolder;
+            text-decoration-line: underline;
+        }
+
+        #h1chronic {
+            text-align: center;
+            vertical-align: central;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bolder;
+            font-size: 50px;
+            margin: auto;
+            color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        #chrcard {
+            display: inline-block;
+            width: 244px; /* Adjust the width as needed */
+            margin: 2px;
+            border: 1px solid #ccc;
+            height: 200px;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-color: lightblue;
+            box-shadow: 10px;
+        }
+
+        #chrcardholder {
+            align-self:center;
+            margin-left:20%;
+            /*margin: auto;
+            width: 50%;*/
+            cursor: default;
+        }
+
+        /* Customize the label (the container) */
+        .containers {
+            margin-left: 1%;
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: default;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .containers input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .containers:hover input ~ .checkmark {
+            /*background-color: #ccc;*/
+            cursor: pointer;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .containers input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .containers input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .containers .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #myCheckbox:hover {
+            cursor: pointer;
+        }
+
+        #reminderpopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #reminderpopupclose {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        #op{
+            display: inline-block;
+            margin-right: 30px;
+            cursor: pointer;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        #pres {
+            background-color: lightblue;
+        }
+
+        #optionscontainer {
+           margin-left:30%;
+        }
+
+        #seeonline {
+                        width: 70%;
+                    height: 40px;
+            border-radius: 7px;
+            background-color: lightblue;
+            text-align: left;
+            font-weight: bold;
+        }
+
+            #seeonline:hover {
+                font-weight: bolder;
+                color: black;
+                text-transform: none;
+                text-decoration-thickness: from-font;
+                text-decoration: wavy;
+            }
+
+        #phantsi {
+            margin-left: 200px;
+        }
+
+            #phantsi:hover {
+                transform: rotate(180deg);
+            }
+
+        section{
+            width:80%;
+        }
+
+        #back {
+            border: double;
+            border-radius: 7px;
+            font-size: 15px;
+            padding: 10px;
+            background-color:lightcoral;
+            cursor:pointer;
+        }
+        #home{
+            background: #eee;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkbox = document.getElementById('myCheckbox');
+            const closeReminder = document.getElementById('closeReminder');
+            const closeReminder2 = document.getElementById('closeReminder2');
+            const popupReminder = document.getElementById('reminderpopup');
+            const popupReminderclose = document.getElementById('reminderpopupclose');
+
+
+            checkbox.addEventListener('click', function () {
+                if (this.checked) {
+                    popupReminder.style.display = 'block';
+                }
+                else {
+                    popupReminderclose.style.display = 'block';
+                }
+            });
+            closeReminder2.addEventListener('click', function () {
+                popupReminderclose.style.display = 'none';
+                popupReminder.style.display = 'none';
+            });
+            closeReminder.addEventListener('click', function () {
+
+                popupReminder.style.display = 'none';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="home">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="ReminderOptin">
+                        <i class="fas fa-bell"></i>
+                        <span class="nav-item">Reminder</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Prescription">
+                        <i class="fas fa-pills"></i>
+                        <span class="nav-item">Prescription Details</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Consultations">
+                        <i class="fas fa-video"></i>
+                        <span class="nav-item">Online Video Consultations</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="ProgressStats">
+                        <i class="fas fa-laptop-medical"></i>
+                        <span class="nav-item">Health Progression Stats</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Home" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div id="headingchr">
+                <br />
+                <p id="h1chronic">Chronic Medication</p>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div id="chrcardholder">
+                <div class="card" id="chrcard">
+                    <img class="card-img-top" src="~/css/asthema.png" width="200" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">Asthema</h5>
+                        <p class="card-text">Asthma is a chronic lung disease affecting people of all ages. It is caused by inflammation and muscle tightening around the airways, which makes it harder to breathe.</p>
+                        <a target="_blank"  style="color:blue;" title="Asthema" href="https://www.who.int/news-room/fact-sheets/detail/asthma#:~:text=Asthma%20is%20a%20chronic%20lung,come%20and%20go%20over%20time.">Read More</a>
+                    </div>
+                </div>
+                <div class="card" id="chrcard">
+                    <img class="card-img-top" src="~/css/diabetes.png" width="200" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">Diabetes</h5>
+                        <p class="card-text">With diabetes, your body doesn't make enough insulin or can't use it as well as it should. When there isn't enough insulin or cells stop responding to insulin, too much blood sugar stays in your blood.</p>
+                        <a target="_blank"  style="color:blue;" title="Diabetes" href="https://www.cdc.gov/diabetes/basics/diabetes.html#:~:text=With%20diabetes%2C%20your%20body%20doesn,vision%20loss%2C%20and%20kidney%20disease.">Read More</a>
+                    </div>
+                </div>
+                <div class="card" id="chrcard">
+                    <img class="card-img-top" src="~/css/cancer.png" width="200" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">Cancer</h5>
+                        <p class="card-text">Cancer refers to any one of a large number of diseases characterized by the development of abnormal cells that divide uncontrollably and have the ability to infiltrate and destroy normal body tissue.</p>
+                        <a target="_blank" style="color:blue;" title="Cancer" href="https://www.mayoclinic.org/diseases-conditions/cancer/symptoms-causes/syc-20370588#:~:text=Cancer%20refers%20to%20any%20one,of%20death%20in%20the%20world.">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <hr  style="width: 80%;"/>
+            <br />
+            @{
+                TempData["email"] = User.Identity?.Name.ToString();
+            }
+            <hr />
+            <br />
+            <div id="optionscontainer">
+                <a asp-controller="Chronic" asp-action="Consultations" id="op" style="width: 12rem;">
+                    <div class="card" id="Online" style="width: 180px;">
+
+                        <img class="card-img-top" src="~/css/onlineconsultation.png" width="180" height="180" />
+                        <div class="card-body">
+                            <h5 class="card-title mb-2 text-muted">Online Consultation Appointments</h5>
+                        </div>
+                    </div>
+                </a>
+                <a asp-controller="Chronic" asp-action="Prescription" id="op" style="width: 12rem;" >
+                    <div class="card" id="Online2">
+                        <img class="card-img-top" src="~/css/prescription.jpg" width="180" height="180" />
+                        <div class="card-body" id="pres">
+                            <h5 class="card-title mb-2 text-muted">View Your Current Prescription Details</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <br />
+        </section>
+    </div>
+    <div id="reminderpopup">
+        <p>You have successfully opted in!!</p>
+        <br />
+        <button class="btn btn-sm" id="closeReminder">Close</button>
+    </div>
+    <div id="reminderpopupclose">
+        <p>You have successfully opted out!!</p>
+        <br />
+        <button class="btn btn-sm" id="closeReminder2">Close</button>
+    </div>
+</body>
+</html>

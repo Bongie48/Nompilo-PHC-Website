@@ -1,0 +1,36 @@
+﻿@model Test
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Test";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+    <h1 id="bookh1">Test</h1>
+
+    <form asp-action="insertTest" method="post">
+        <div class="form-group">
+            <label asp-for="testfor">Select Prenatal Test Type</label>
+            <select asp-for="testfor" class="form-control">
+                <option value="">-- Select Test Type --</option>
+                <option value="HIV">HIV</option>
+                <option value="Ultrasound">Ultrasound</option>
+                <option value="Blood Tests">Blood Tests</option>
+                <option value="Glucose Tolerance Test">Glucose Tolerance Test</option>
+            </select>
+            <span asp-validation-for="testfor" class="text-danger"></span>
+        </div>
+
+        <input type="hidden" asp-for="PatientId" value="@ViewBag.PatientId" />
+        <input type="hidden" asp-for="DoctorId" value="@ViewBag.DoctorId" />
+        <input type="hidden" asp-for="pName" value="@ViewBag.Name" />
+        <input type="hidden" asp-for="pSurname" value="@ViewBag.SurName" />
+        <input type="hidden" asp-for="email" value="@ViewBag.Email" />
+
+        <button type="submit" class="btn btn-primary">Create Test</button>
+    </form>
+
+<br />
+<a asp-controller="Prenatal" asp-action="DocDash"><button class="btn-danger" id="back">Back</button></a>
+</body>
+

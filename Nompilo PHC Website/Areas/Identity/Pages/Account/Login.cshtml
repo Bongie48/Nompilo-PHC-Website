@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/LoginStyleSheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>User Login</title>
+
+</head>
+<body>
+    <div class="containerr" id="containerr">
+        <div class="form-containerr log-in-containerr">
+            <form id="account" method="post">
+                
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div><br />
+
+
+       
+                <input type="email" asp-for="Input.Email" class="form-control" autocomplete="off" aria-required="true" placeholder="Email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span><br />
+                <input type="password" asp-for="Input.Password" class="form-control" autocomplete="off" aria-required="true" placeholder="Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span><br />
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br />
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                @*<button id="login-submit" type="submit">Log In</button>*@
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>&#128274; Sign-In</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

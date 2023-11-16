@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Booking>;
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "ViewApp";
+    bool have = false;
+}
+<body id="home">
+<h1 id="bookh1">View Appointments</h1>
+    <table class="table table-dark">
+
+        @if (Model.Count() > 0)
+        {
+            <thead class="table-primary">
+                <tr>
+                    
+                    <th>Date & Time</th>
+                    <th>Services</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </thead>
+           @foreach(var books in Model)
+            {
+                        string service = books.services;
+                        string name = User.Identity?.Name.ToString();
+                        DateTime date = books.datetimes;
+                        if (name == books.email)
+                        {
+                    <tr>
+                        <td>@name</td>
+                        <td>@date</td>
+                        <td>@service</td>
+                        <td><a asp-controller="Booking" asp-action="Update" asp-route-ID="@books.Id"><button class="btn-primary">Edit</button></a></td>
+                    <td><a asp-controller="Booking" asp-action="Delete" asp-route-ID="@books.Id"><button class="btn-primary" id="showPopupButton">Cancel</button></a>
+                    </tr>
+                    have = true;
+                    }
+                   
+            }
+            if(have)
+            {
+              <h2>Sorry you have no active appointments</h2>
+
+            }
+        }
+        else
+        {
+        <h2>Sorry you have no active appointments</h2>
+        }
+    </table>
+
+    <div id="popupDiv" class="popup">
+        <p>Appointment successfull canceled!!</p>
+        <button id="closePopupButton" asp-controller="Booking" asp-action="ViewApp">Close</button>
+    </div>
+<br />
+    <a asp-controller="Booking" asp-action="Booking"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+

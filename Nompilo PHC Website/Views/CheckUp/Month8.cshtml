@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 8th Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 8th Month</h1>
+    
+    <h3>Nutrition</h3>
+    <p>
+        The 8th month of pregnancy is a crucial time for your baby's growth and development. Focus on maintaining a balanced diet to support your health and your baby's well-being:
+    </p>
+    <ul>
+        <li>Consume a variety of nutrient-rich foods, including fruits, vegetables, and whole grains.</li>
+        <li>Continue to prioritize calcium-rich foods for your baby's bone development.</li>
+        <li>Ensure an adequate intake of protein for growth and repair.</li>
+        <li>Stay hydrated by drinking enough water to support amniotic fluid and overall well-being.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        As your pregnancy progresses, it's essential to remain active and maintain strength. Consider the following exercises for the 8th month of pregnancy:
+    </p>
+    <ul>
+        <li>Gentle aerobic exercises such as stationary cycling or swimming to support cardiovascular health.</li>
+        <li>Pregnancy-safe strength training exercises to maintain muscle tone and overall strength.</li>
+        <li>Pelvic tilts and stretches to alleviate back pain and improve posture.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before beginning or modifying your exercise routine and adhere to any specific dietary guidelines provided by your doctor.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="9">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="7">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

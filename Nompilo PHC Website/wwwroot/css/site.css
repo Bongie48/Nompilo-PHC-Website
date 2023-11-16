@@ -1,0 +1,836 @@
+﻿html {
+  font-size: 14px;
+}
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+    /*align-items:center;*/
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#home {
+    margin-bottom: 60px;
+    background-image: url("Wallpaper.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+/*    background-color:azure;*/
+
+/*    animation-name: animate;
+    animation-duration:60s;
+    animation-direction:alternate-reverse*/
+}
+/*
+@keyframes animate{
+    0% {
+        background-image:url('Screen_Recording_20230901-112402_Samsung Internet_001.mp4')
+    }
+    25% {
+        background-position: 100% 50%;
+        background-color: lightblue;
+    }
+    45%{
+        background-position:0 50%;
+        background-color:powderblue;
+    }
+    65% {
+        background-color:bisque;
+    }
+    75% {
+        background-color:cadetblue;
+    }
+    85% {
+        background-color:dimgray;
+    }
+    97% {
+        background-color:lavenderblush;
+    }
+
+}
+*/
+#heading1{
+    font-family:Arial;
+    font-size:54px;
+    text-align:center;
+    text-shadow:inherit;
+    color:brown;
+   
+}
+#slideShowContainer {
+    position: relative;
+    width: 120%;
+    height: 600px;
+    overflow: hidden;
+    border-radius:25px;
+}
+#slideShowContainer img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 70%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        border-radius: 25px;
+}
+ #slideShowContainer img:first-child {
+        opacity:1;
+ }
+button:hover {
+    text-decoration: underline;
+    font-weight: bolder;
+    color: red;
+
+    text-transform: uppercase;
+    text-decoration-thickness:from-font;
+    text-decoration:wavy
+}
+nav {
+    font-size: 18px;
+    text-decoration: none; 
+    position: fixed;
+    height:auto;
+}
+nav {
+    position: fixed;
+}
+.logo-nav {
+    height: 95px;
+    width: auto;
+}
+#ul1 a:hover {
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: wavy;
+    color: red;
+    font-weight: bolder;
+    transition: all;
+    text-shadow: 2px 2px 4px;
+}
+.bhokx{
+    border:groove;
+    border-radius:8px 8px;
+    width:auto;
+    height:auto;
+    border-collapse:collapse;
+    columns:auto;
+    font-size:18px;
+}
+.wlk {
+    height: 200px;
+    width: 410px;
+    border-radius:210px;
+}
+
+.btm{
+    ruby-align:center;
+    align-content:space-evenly;
+    border-radius:50px
+}
+.hed:hover {
+    text-transform:full-width;
+    text-decoration: underline;
+    text-decoration-style:dashed;
+    color: red;
+    font-weight: bolder;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+button:hover {
+    text-decoration: underline;
+    font-weight: bolder;
+    color: red;
+    text-transform: uppercase;
+    text-decoration-thickness: from-font;
+    text-decoration: wavy
+}
+
+
+.container .form {
+    margin-top: 30px;
+}
+
+.form .input-box {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-box label {
+    color: #333;
+}
+
+.form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+.input-box input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column {
+    display: flex;
+    column-gap: 15px;
+}
+
+.form .gender-box {
+    margin-top: 20px;
+}
+
+.gender-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+.form .gender {
+    column-gap: 5px;
+}
+
+.gender input {
+    accent-color: rgb(130, 106, 251);
+}
+
+.form :where(.gender input, .gender label) {
+    cursor: pointer;
+}
+
+.gender label {
+    color: #707070;
+}
+
+.address :where(input, .select-box) {
+    margin-top: 15px;
+}
+
+.select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+}
+
+.form button {
+    height: 55px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgb(130, 106, 251);
+}
+
+    .form button:hover {
+        background: rgb(88, 56, 250);
+    }
+/*Responsive*/
+@media screen and (max-width: 500px) {
+    .form .column {
+        flex-wrap: wrap;
+    }
+
+    .form :where(.gender-option, .gender) {
+        row-gap: 15px;
+    }
+}
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+
+/*button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}*/
+
+/*form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}*/
+#account {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+
+input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.containerr {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 1000px;
+    max-width: 150%;
+    min-height: 500px;
+}
+
+.form-containerr {
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+.log-in-containerr {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+}
+
+
+.overlay {
+    background: #FF416C;
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+}
+
+
+.overlay-right {
+    right: 0;
+}
+
+
+.social-container {
+    margin: 50px 0;
+}
+
+    .social-container a {
+        border: 1px solid #DDDDDD;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+/*Nkosithandile Booking and Buttons​*/
+#dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    
+
+}
+
+    /* Dropdown button on hover & focus */
+    #dropbtn:hover, #dropbtn:focus {
+        background-color: #2980B9;
+    }
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    height:5px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+       
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+#dropbtn1 {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+    /* Dropdown button on hover & focus */
+    #dropbtn1:hover, #dropbtn1:focus {
+        background-color: #2980B9;
+    }
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+    height: 5px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    background-color: lightblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content1 a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content1 a:hover {
+            background-color: #ddd;
+        }
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+#hbutton {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 7px;
+}
+#hbutton:hover, #hbutton:focus {
+    background-color: #2980B9;
+}
+
+
+
+nav li {
+    margin-right: 5px;
+    list-style: none;
+    text-decoration: none;
+    display: inline;
+}
+
+nav li a {
+    text-decoration: none;
+}
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+}
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+#hbutton1 {
+    background-color: deepskyblue;
+    color: white;
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 7px;
+}
+
+    #hbutton1:hover, #hbutton1:focus {
+        background-color: deepskyblue;
+        color:white;
+    }
+#hbutton2 {
+    background-color: lightcoral;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 7px;
+}
+
+    #hbutton2:hover, #hbutton2:focus {
+        background-color: lightcoral;
+        color:white;
+    }
+
+#hold {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    width: 500px;
+    text-align:left;
+    font-weight:bold;
+    font-size:17px;
+}
+#bookh1{
+    text-align: center;
+    font-family:'Courier New';
+    text-decoration:underline;
+}
+#back{
+    border:double;
+    border-radius:7px;
+    font-size: 15px;
+    padding:10px;
+}
+.popup, .popup1, .popup2 {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#vtable{
+    width:25%;
+}
+
+td {
+    width: 25%;
+    justify-content:center;
+}
+
+/*Nkosithandile booking and menu buttons​*/
+
+/*Chronic medication*/
+
+
+#droplinks {
+    display: block;
+    overflow-wrap:break-word;
+    overflow:hidden;
+    height: 60px;
+    border-radius: 7px;
+    background-color: lightblue;
+    min-width: 70%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    color:white;
+}
+#link {
+    text-indent: 100px;
+}
+#onlinec{
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    text-decoration-line:underline;
+}
+#subtitle {
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+#medic {
+    width: 100%;
+    background-color: lightblue;
+    height: 40px;
+    font-weight: bolder;
+    justify-content:left;
+    font-family:Arial;
+}
+#phantsi2{
+    transform:rotate(-90deg)
+}
+#medicinedetails{
+    display:inline-block;
+}
+#medicinedetails1 {
+    display: inline-block;
+    margin-left:20px;
+}
+hr{
+    width:100%;
+}
+#privacy{
+    font-size:13px;
+    text-align:center;
+}
+#details {
+    display: inline-block;
+  Adjust the width as needed 
+    text-align: right;
+    margin-right: 10px;
+    font-weight:bold;
+}
+#detailsholder {
+    width: 70%;
+    font-size: 13px;
+    background-color:lightblue;
+}
+#detailsinput {
+    display: inline-block;
+    width: 200px;
+    height: 20px;
+}
+/*Chronic medication*/
+
+/*Chronic sidebar*/
+
+/*Chronic sidebar*/
+/*Yolanda*/
+#top {
+    top: 0;
+    background-image: url('due_date_calculator.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+    width:100%;
+    height:100px;
+    padding:10px;
+   border-radius:7px;
+   position:absolute;
+   left:0;
+}
+#Cal {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 17px;
+    background-color:lightpink;
+}
+#fresult {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 17px;
+    text-align: center;
+    background-color: lightpink;
+}
+/*Yolanda*/
+
+
+
+/*NDUMISO THUNGO*/
+.contnr {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 0 8%;
+    position: relative;
+    animation: bckgr 20s/*linear infinite*/;
+}
+
+
+.contnt {
+    top: 30%;
+    position: absolute;
+    transform: translateY(-50%);
+    color: #fff;
+    margin-left:180px;
+
+}
+
+    .contnt h1 {
+        font-size: 75px;
+        font-weight: 600;
+    }
+
+    .contnt p {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .contnt span {
+        color: crimson;
+    }
+
+.rocket {
+    right: 10%;
+    width: 250px;
+    bottom: 0;
+    position: absolute;
+    animation: rocket 30s linear infinite;
+    opacity: 0;
+}
+/*Bakcground picture slideshow in the body*/
+@keyframes bckgr{
+    0% {
+        background-image: url(background.png);
+    }
+    20% {
+        background-image: url(bckgrnd2.PNG);
+    }
+    55% {
+        background-image: url(bckgrnd2.PNG);
+    }
+    90% {
+        background-image: url('wlkin appountmnt gf.gif');
+    }
+    100% {
+        background-image: url(background.png);
+    }
+}
+@keyframes rocket {
+    0% {
+        bottom: 0;
+        opacity: 0;
+    }
+    100% {
+        bottom: 105%;
+        opacity: 1;
+    }
+}
+
+.launch-time {
+    display: flex;
+}
+
+.launch-time div {
+    flex-basis: 100px;
+}
+
+.launch-time div p {
+    font-size: 60px;
+    margin-bottom: -14px;
+}
+
+.launch-time span{
+    font-size: inherit;
+    margin-top: auto;
+}
+
+/*INDEX FRM*/
+iframe:hover {
+    width: 300px;
+    height: 150px;
+}
+
+#frm {
+    top: 0;
+    right: 0;
+}
+
+/*INFO */
+.mn{
+
+}

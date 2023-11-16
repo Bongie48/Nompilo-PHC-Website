@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TestResult>
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "viewTests";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+    <h1 id="bookh1">Test Results</h1>
+    @{
+        if (Model.Count() > 0)
+        {
+            <table class="table table-dark">
+
+
+                <thead class="table-primary">
+                    <tr>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                @foreach (var preg in Model)
+                {
+                    <tr>
+                        <td>@preg.Description</td>
+                        <td>@preg.date</td>
+                        <td>@preg.Result</td>
+                    </tr>
+                }
+                }
+               
+            </table>
+        }
+        else
+        {
+            <h2 style="text-align:center">Sorry you have no sample results at the moment</h2>
+        }
+    }
+    <br />
+    <a asp-action="Test" asp-controller="docTests" class="w-100 btn btn-lg btn-primary">Send Sample</a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <a asp-action="Test" asp-controller="docTests"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+

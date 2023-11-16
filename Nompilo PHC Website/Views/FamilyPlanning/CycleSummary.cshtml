@@ -1,0 +1,1082 @@
+﻿@model IEnumerable<Nompilo_PHC_Website.Models.ContraceptiveRecordN>
+@{
+    ViewData["Title"] = "CycleSummary";
+}
+@{
+    Layout = "FamilyLayout";
+}
+@{
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special) || name.ToLowerInvariant().Contains(special1) || name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+<style>
+    :root {
+        --dk-gray-100: #F3F4F6;
+        --dk-gray-200: #E5E7EB;
+        --dk-gray-300: #D1D5DB;
+        --dk-gray-400: #9CA3AF;
+        --dk-gray-500: #6B7280;
+        --dk-gray-600: #4B5563;
+        --dk-gray-700: #374151;
+        --dk-gray-800: #1F2937;
+        --dk-gray-900: #111827;
+        --dk-dark-bg: #313348;
+        --dk-darker-bg: whitesmoke;
+        --navbar-bg-color: DodgerBlue;
+        --sidebar-bg-color: blue;
+        --sidebar-width: 250px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--dk-darker-bg);
+        font-size: .925rem;
+    }
+
+    #wrapper {
+        margin-left: var(--sidebar-width);
+        transition: all .3s ease-in-out;
+    }
+
+        #wrapper.fullwidth {
+            margin-left: 0;
+        }
+
+
+
+    /** --------------------------------
+                         -- Sidebar
+                        -------------------------------- */
+
+
+
+    a:hover {
+        background: #eee;
+    }
+
+    #Sa {
+        position: relative;
+        color: rgb(85, 83, 83);
+        font-size: 14px;
+        display: table;
+        width: 280px;
+        padding: 10px;
+    }
+
+    .Inside:hover {
+        background: #eee;
+        position: relative;
+        color: rgb(85, 83, 83);
+        font-size: 20px;
+        display: table;
+        width: 300px;
+        /* padding: 10px;*/
+    }
+
+    .logout {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .SideList {
+        position: initial;
+    }
+
+    .sidebar {
+        background-color: var(--sidebar-bg-color);
+        background-color: blue;
+        width: 300px;
+        position: relative;
+        padding-left: 0px;
+        left: 0;
+    }
+
+        .sidebar .close-aside {
+            position: absolute;
+            top: 7px right: 7px;
+            cursor: pointer;
+            color: #EEE;
+        }
+
+        .sidebar .sidebar-header {
+            border-bottom: 1px solid #2a2b3c
+        }
+
+            .sidebar .sidebar-header h5 a {
+                /*color: var(--dk-gray-300)*/
+                color: lightblue
+            }
+
+            .sidebar .sidebar-header p {
+                /*color: var(--dk-gray-400);*/
+                color: lightblue;
+                font-size: .825rem;
+            }
+
+        .sidebar .search .form-control ~ i {
+            color: #2b2f3a;
+            color: lightblue;
+            right: 40px;
+            top: 22px;
+        }
+
+        .sidebar > ul > li {
+            padding: .7rem 1.75rem;
+        }
+
+        .sidebar ul > li > a {
+            /*color: var(--dk-gray-400);*/
+            color: lightblue;
+            text-decoration: none;
+        }
+
+            /* Start numbers */
+            .sidebar ul > li > a > .num {
+                line-height: 0;
+                border-radius: 3px;
+                font-size: 14px;
+                padding: 0px 5px
+            }
+
+        .sidebar ul > li > i {
+            font-size: 18px;
+            margin-right: .7rem;
+            color: var(--dk-gray-500);
+        }
+
+        .sidebar ul > li.has-dropdown > a:after {
+            content: '\eb3a';
+            font-family: unicons-line;
+            font-size: 1rem;
+            line-height: 1.8;
+            float: right;
+            color: var(--dk-gray-500);
+            transition: all .3s ease-in-out;
+        }
+
+        .sidebar ul .opened > a:after {
+            transform: rotate(-90deg);
+        }
+
+        /* Start dropdown menu */
+        .sidebar ul .sidebar-dropdown {
+            padding-top: 10px;
+            padding-left: 30px;
+            display: none;
+        }
+
+            .sidebar ul .sidebar-dropdown.active {
+                display: block;
+            }
+
+            .sidebar ul .sidebar-dropdown > li > a {
+                font-size: .85rem;
+                padding: .5rem 0;
+                display: block;
+            }
+    /* End dropdown menu */
+
+    .show-sidebar {
+        transform: translateX(-270px);
+    }
+
+
+    /** --------------------------------
+                         -- welcome
+                        -------------------------------- */
+    .welcome {
+        color: var(--dk-gray-300);
+        width: auto
+    }
+
+        .welcome .content {
+            background-color: DodgerBlue;
+        }
+
+        .welcome p {
+            color: var(--dk-gray-400);
+        }
+
+
+
+
+    /** --------------------------------
+                         -- Statistics
+                        -------------------------------- */
+    .statistics {
+        color: var(--dk-gray-200);
+    }
+
+        .statistics .box {
+            background-color: var(--dk-dark-bg);
+        }
+
+            .statistics .box i {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+            }
+
+            .statistics .box p {
+                color: var(--dk-gray-400);
+            }
+
+
+
+
+    /** --------------------------------
+                         -- Charts
+                        -------------------------------- */
+    .charts .chart-container {
+        background-color: var(--dk-dark-bg);
+    }
+
+        .charts .chart-container h3 {
+            color: var(--dk-gray-400)
+        }
+
+
+
+
+    /** --------------------------------
+                         -- users
+                        -------------------------------- */
+    .admins .box .admin {
+        background-color: var(--dk-dark-bg);
+    }
+
+    .admins .box h3 {
+        color: var(--dk-gray-300);
+    }
+
+    .admins .box p {
+        color: var(--dk-gray-400)
+    }
+
+
+
+
+    /** --------------------------------
+                         -- statis
+                        -------------------------------- */
+    .statis {
+        color: var(--dk-gray-100);
+    }
+
+        .statis .box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+            .statis .box h3:after {
+                content: "";
+                height: 2px;
+                width: 70%;
+                margin: auto;
+                background-color: rgba(255, 255, 255, 0.12);
+                display: block;
+                margin-top: 10px;
+            }
+
+            .statis .box i {
+                position: absolute;
+                height: 70px;
+                width: 70px;
+                font-size: 22px;
+                padding: 15px;
+                top: -25px;
+                left: -25px;
+                background-color: rgba(255, 255, 255, 0.15);
+                line-height: 60px;
+                text-align: right;
+                border-radius: 50%;
+            }
+
+
+
+
+
+    .main-color {
+        color: #ffc107
+    }
+
+    /** --------------------------------
+                         -- Please don't do that in real-world projects!
+                         -- overwrite Bootstrap variables instead.
+                        -------------------------------- */
+
+    .navbar {
+        background-color: var(--navbar-bg-color) !important;
+        border: none !important;
+    }
+
+        .navbar .dropdown-menu {
+            right: auto !important;
+            left: 0 !important;
+        }
+
+        .navbar .navbar-nav > li > a {
+            color: #EEE !important;
+            line-height: 55px !important;
+            padding: 0 10px !important;
+        }
+
+        .navbar .navbar-brand {
+            color: #FFF !important
+        }
+
+        .navbar .navbar-nav > li > a:focus,
+        .navbar .navbar-nav > li > a:hover {
+            color: #EEE !important
+        }
+
+        .navbar .navbar-nav > .open > a,
+        .navbar .navbar-nav > .open > a:focus,
+        .navbar .navbar-nav > .open > a:hover {
+            background-color: transparent !important;
+            color: #FFF !important
+        }
+
+        .navbar .navbar-brand {
+            line-height: 55px !important;
+            padding: 0 !important
+        }
+
+            .navbar .navbar-brand:focus,
+            .navbar .navbar-brand:hover {
+                color: #FFF !important
+            }
+
+        .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+            margin: 0 !important
+        }
+
+
+
+        .navbar .navbar-nav > li > a {
+            padding-left: 0 !important;
+            float: none;
+        }
+
+    .navbar-nav {
+        margin: 0 !important;
+        float: none;
+    }
+
+    .navbar .navbar-collapse,
+    .navbar .navbar-form {
+        border: none !important;
+        float: none;
+    }
+
+    }
+
+    .navbar .navbar-nav > li > a {
+        float: none !important;
+    }
+
+        .navbar .navbar-nav > li > a > span:not(.caret) {
+            background-color: #e74c3c !important;
+            border-radius: 50% !important;
+            height: 25px !important;
+            width: 25px !important;
+            padding: 2px !important;
+            font-size: 11px !important;
+            position: relative !important;
+            top: -10px !important;
+            right: 5px !important
+        }
+
+    .dropdown-menu > li > a {
+        padding-top: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .navbar .navbar-nav > li > a > i {
+        font-size: 18px !important;
+    }
+
+
+
+
+
+    .statistics .box {
+        margin-bottom: 25px !important;
+    }
+
+    .navbar .navbar-nav .open .dropdown-menu > li > a {
+        color: #CCC !important
+    }
+
+        .navbar .navbar-nav .open .dropdown-menu > li > a:hover {
+            color: #FFF !important
+        }
+
+    .navbar .navbar-toggle {
+        border: none !important;
+        color: #EEE !important;
+        font-size: 18px !important;
+    }
+
+        .navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+            background-color: transparent !important
+        }
+
+
+
+
+    ::-webkit-scrollbar {
+        background: transparent;
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #3c3f58;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+        margin: 10px 0 0 10px;
+    }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+    #AllbutB {
+        background-color: dodgerblue;
+        color: white;
+        padding: 10px;
+        font-size: 15px;
+        border: none;
+        border-radius: 7px;
+    }
+
+    #AllbutF {
+        background-color: dodgerblue;
+        color: white;
+        padding: 10px;
+        font-size: 15px;
+        border: none;
+        border-radius: 7px;
+    }
+
+    #tfot {
+        position: fixed;
+        bottom: auto;
+    }
+
+    #bSize {
+        
+        font-size: 15px;
+    }
+
+    #Scr {
+        overflow-y: scroll
+    }
+
+</style>
+<script>
+    'use strict'
+
+    function $(selector) {
+        return document.querySelector(selector)
+    }
+
+    function find(el, selector) {
+        let finded
+        return (finded = el.querySelector(selector)) ? finded : null
+    }
+
+    function siblings(el) {
+        const siblings = []
+        for (let sibling of el.parentNode.children) {
+            if (sibling !== el) {
+                siblings.push(sibling)
+            }
+        }
+        return siblings
+    }
+
+    const showAsideBtn = $('.show-side-btn')
+    const sidebar = $('.sidebar')
+    const wrapper = $('#wrapper')
+
+    showAsideBtn.addEventListener('click', function () {
+        $(`#${this.dataset.show}`).classList.toggle('show-sidebar')
+        wrapper.classList.toggle('fullwidth')
+    })
+
+    if (window.innerWidth < 767) {
+        sidebar.classList.add('show-sidebar');
+    }
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 767) {
+            sidebar.classList.remove('show-sidebar')
+        }
+    })
+
+    // dropdown menu in the side nav
+    var slideNavDropdown = $('.sidebar-dropdown');
+
+    $('.sidebar .categories').addEventListener('click', function (event) {
+        event.preventDefault()
+
+        const item = event.target.closest('.has-dropdown')
+
+        if (!item) {
+            return
+        }
+
+        item.classList.toggle('opened')
+
+        siblings(item).forEach(sibling => {
+            sibling.classList.remove('opened')
+        })
+
+        if (item.classList.contains('opened')) {
+            const toOpen = find(item, '.sidebar-dropdown')
+
+            if (toOpen) {
+                toOpen.classList.add('active')
+            }
+
+            siblings(item).forEach(sibling => {
+                const toClose = find(sibling, '.sidebar-dropdown')
+
+                if (toClose) {
+                    toClose.classList.remove('active')
+                }
+            })
+        } else {
+            find(item, '.sidebar-dropdown').classList.toggle('active')
+        }
+    })
+
+    $('.sidebar .close-aside').addEventListener('click', function () {
+        $(`#${this.dataset.close}`).classList.add('show-sidebar')
+        wrapper.classList.remove('margin')
+    })
+
+
+    // Global defaults
+    Chart.defaults.global.animation.duration = 2000; // Animation duration
+    Chart.defaults.global.title.display = false; // Remove title
+    Chart.defaults.global.defaultFontColor = '#71748c'; // Font color
+    Chart.defaults.global.defaultFontSize = 13; // Font size for every label
+
+    // Tooltip global resets
+    Chart.defaults.global.tooltips.backgroundColor = '#111827'
+    Chart.defaults.global.tooltips.borderColor = 'blue'
+
+    // Gridlines global resets
+    Chart.defaults.scale.gridLines.zeroLineColor = '#3b3d56'
+    Chart.defaults.scale.gridLines.color = '#3b3d56'
+    Chart.defaults.scale.gridLines.drawBorder = false
+
+    // Legend global resets
+    Chart.defaults.global.legend.labels.padding = 0;
+    Chart.defaults.global.legend.display = false;
+
+    // Ticks global resets
+    Chart.defaults.scale.ticks.fontSize = 12
+    Chart.defaults.scale.ticks.fontColor = '#71748c'
+    Chart.defaults.scale.ticks.beginAtZero = false
+    Chart.defaults.scale.ticks.padding = 10
+
+    // Elements globals
+    Chart.defaults.global.elements.point.radius = 0
+
+    // Responsivess
+    Chart.defaults.global.responsive = true
+    Chart.defaults.global.maintainAspectRatio = false
+
+    // The bar chart
+    var myChart = new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+            datasets: [{
+                label: "Lost",
+                data: [45, 25, 40, 20, 60, 20, 35, 25],
+                backgroundColor: "#0d6efd",
+                borderColor: 'transparent',
+                borderWidth: 2.5,
+                barPercentage: 0.4,
+            }, {
+                label: "Succes",
+                startAngle: 2,
+                data: [20, 40, 20, 50, 25, 40, 25, 10],
+                backgroundColor: "#dc3545",
+                borderColor: 'transparent',
+                borderWidth: 2.5,
+                barPercentage: 0.4,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {},
+                    ticks: {
+                        stepSize: 15,
+                    },
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    }
+                }]
+            }
+        }
+    })
+
+    // The line chart
+    var chart = new Chart(document.getElementById('myChart2'), {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+            datasets: [{
+                label: "My First dataset",
+                data: [4, 20, 5, 20, 5, 25, 9, 18],
+                backgroundColor: 'transparent',
+                borderColor: '#0d6efd',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }, {
+                label: "Month",
+                data: [11, 25, 10, 25, 10, 30, 14, 23],
+                backgroundColor: 'transparent',
+                borderColor: '#dc3545',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }, {
+                label: "Month",
+                data: [16, 30, 16, 30, 16, 36, 21, 35],
+                backgroundColor: 'transparent',
+                borderColor: '#f0ad4e',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        drawBorder: false
+                    },
+                    ticks: {
+                        stepSize: 12,
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    },
+                }]
+            }
+        }
+    })
+
+    var chart = document.getElementById('chart3');
+    var myChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: ["One", "Two", "Three", "Four", "Five", 'Six', "Seven", "Eight"],
+            datasets: [{
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#d9534f',
+                borderWidth: 1.5,
+                showLine: true,
+                data: [3, 30, 16, 30, 16, 36, 21, 40, 20, 30],
+                backgroundColor: 'transparent'
+            }, {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#5cb85c',
+                borderWidth: 1.5,
+                data: [6, 20, 5, 20, 5, 25, 9, 18, 20, 15],
+                backgroundColor: 'transparent'
+            },
+            {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#f0ad4e',
+                borderWidth: 1.5,
+                data: [12, 20, 15, 20, 5, 35, 10, 15, 35, 25],
+                backgroundColor: 'transparent'
+            },
+            {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#337ab7',
+                borderWidth: 1.5,
+                data: [16, 25, 10, 25, 10, 30, 14, 23, 14, 29],
+                backgroundColor: 'transparent'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        drawBorder: false
+                    },
+                    ticks: {
+                        stepSize: 12
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    },
+                }],
+            }
+        }
+    })
+
+</script>
+<form>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <aside class="sidebar position-fixed  top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1" style="padding-left:0px; background-color:#029EFF;" align="left">
+        <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1" align="left"></i>
+        <div class="sidebar-header d-flex justify-content-left align-items-center px-3 py-4">
+
+            <a align="left" href=# class="logo"><img align="left" src="~/css/person.jpg" alt="" /></a>
+
+            <div class="ms-2">
+                <h5 class="fs-6 mb-0">
+                    <a class="text-decoration-none" href="#" style="font-size:10px;color:black;font-size:20px"><b>@name</b></a>
+                </h5>
+
+            </div>
+
+        </div>
+        <ul class="categories list-unstyled">
+            <li class="SideList" autofocus>
+
+                <a class="Inside" asp-controller="FamilyPlanning" asp-action="FPatient" style="color:black;" asp-area="" id="Sa"><i class="fas fa-home"></i> <span class="nav-item">Home</span></a>
+            </li>
+            <li class="SideList" autofocus>
+                <a class="Inside" asp-controller="FamilyPlanning" asp-action="LogPeriod" style="color:black;" asp-area="" id="Sa"><i class="fa fa-bar-chart"></i> <span class="nav-item">Track Menstrual Cycle</span></a>
+            </li>
+            <li class="SideList" autofocus>
+
+                <a class="Inside" asp-controller="FamilyPlanning" asp-action="LogSyms" style="color:black;" asp-area="" id="Sa"><i class="fa fa-search"></i> <span class="nav-item">Monitor Symptoms</span></a>
+            </li>
+
+            <li class="SideList">
+                <a class="Inside" asp-controller="FamilyPlanning" asp-action="FPatient" style="color:black;" asp-area="" id="Sa"><i class="fa fa-eye"></i> <span class="nav-item">View Your Last Contraceptive Record</span></a>
+                <ul>
+                    <li>
+                        <a class="Inside" asp-controller="FamilyPlanning" asp-action="CycleSummary" style="color:black;background-color:#DCDCDC;" asp-area="" id="Sa"><i class="fa fa-file-text-o"></i> <span class="nav-item" autofocus>View contraceptive</span></a>
+                    </li>
+                    
+                </ul>
+            </li>
+            <li class="SideList">
+                <a class="Inside" style="color:black;" asp-area="" asp-controller="FamilyPlanning" asp-action="Serv" id="Sa"><i class="fas fa-star"></i>  Services</a>
+            </li>
+
+            <li class="SideList">
+                <a class="Inside" style="color:black" asp-area="" asp-controller="FamilyPlanning" asp-action="FReport" id="Sa"><i class="fas fa-envelope"></i>   Your Report</a>
+            </li>
+
+            <li class="logout">
+
+                <div class="nav-item">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link " style="color:black"><i class="fas fa-sign-out-alt"></i>Logout</button>
+                    </form>
+                </div>
+
+            </li>
+        </ul>
+    </aside>
+
+    <section id="wrapper">
+        <div class="p-4">
+            <div class="welcome">
+                <div class="content rounded-3 p-3">
+                    <h1 class="fs-3" style="color:white;text-align:left">Family<i class="main-color">Planning</i></h1>
+
+
+                </div>
+            </div>
+        </div>
+        <section class="charts mt-4">
+            <div class="chart-container p-3" style="background-color:lightgray;">
+                <form class="form-control border-primary" method="get" asp-action="CycleSummary" style="background-color:whitesmoke">
+
+                    @{
+                        int RecordFound = 0;
+                        DateTime CDate = DateTime.Now;
+                        string BP = " ";
+                        float Weigh = 0;
+                        DateTime lASTP = DateTime.Now;
+                        string Met = " ";
+                        DateTime RDate = DateTime.Now;
+                        
+                    }
+
+
+                    @if (Model.Count() > 0)
+                    {
+                        @foreach ( var x in Model)
+                        {
+                            if (x.EmailAddres == @User.Identity?.Name)
+                            {
+                                CDate = x.CurrentDate;
+                                BP=x.BloodPressure;
+                                Weigh = x.Weight;
+                                lASTP = x.LastMenstrualPeriod;
+                                Met = x.Method;
+                                RDate = x.ReturnDate;
+                                
+                            }
+                        }
+                                @foreach (var x in Model)
+                                {
+                                    if (x.EmailAddres == User.Identity?.Name)
+                                    {
+                                        RecordFound = RecordFound + 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        RecordFound = 0;
+                                    }
+                                }
+                                @if (RecordFound > 0)
+                                {
+                                    
+                                    <table class="table table-striped">
+                                        <div style="background-color:dodgerblue;color:white" class="bg bg-dodgerblue text-center rounded-pill">
+                                            <h1 align="center"><b> Your Recent Contraceptive Record</b></h1>
+                                        </div>
+                                        <hr />
+                                <p>Note: This page only view your most recent contraceptive record, use the report page to view all your contraceptive record. <i><b>Remeber to visit the clinic on the @RDate.ToString("dd MMMM yyyy") for contraceptive</b></i></p>
+                                        <thead>
+
+                                            <tr>
+                                                <th>
+
+                                                    Consultation Date
+
+                                                </th>
+                                                <th>
+
+                                                    Blood Pressure
+
+                                                </th>
+                                                <th>
+
+                                                    Weight
+
+                                                </th>
+                                                <th>
+
+                                                    Last Menstrual Period
+
+                                                </th>
+                                                <th>
+
+                                                    Method
+
+                                                </th>
+                                                
+                                                <th colspan="2">
+
+                                                    Return Date
+
+                                                </th>
+                                                <th>
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                        <td><b>@CDate.ToString("dd MMMM yyyy")</b></td>
+                                        <td>@BP</td>
+                                        <td>@Weigh</td>
+                                        <td>@lASTP.ToString("dd MMMM yyyy")</td>
+                                        <td>@Met</td>
+                                        <td colspan="2">@RDate.ToString("dd MMMM yyyy")</td>
+                                        <td></td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                    <p><h2>Your are currently on @Met</h2></p>
+                            <p><h3>Here are some factors that can affect the effectiveness of @Met:</h3></p>
+                            if (Met == "Etonogestrel")
+                            {
+                                
+                                    
+                                    <p>1. Use it as instructed: Etonogestrel needs to be inserted or implanted correctly to be effective. Make sure to follow the instructions of your healthcare provider.</p>
+
+                                    <p>2. Check regularly: Check the position of the implant or other birth control devices regularly. If it has moved or is not in the correct position, it may be ineffective.</p>
+
+                                    <p>3. Use a back-up method: Use a back-up method of birth control, such as condoms, if you are unsure if Etonogestrel is effective or if you missed a dose.</p>
+
+                                    <p>4. Be aware of medication interactions: Some medications, such as rifampin and some anticonvulsants, can reduce the effectiveness of Etonogestrel. Inform your healthcare provider of all medications you are taking to ensure they do not interact with Etonogestrel.</p>
+
+                                   <p>5. Maintain a healthy weight: Being overweight can reduce the effectiveness of Etonogestrel. Maintaining a healthy weight can help ensure it works effectively.</p>
+
+                                    <p>6. Monitor side effects: Inform your healthcare provider if you experience any side effects, such as irregular bleeding or changes in mood. These may indicate the effectiveness of Etonogestrel.</p>
+                                
+                            }
+                            else if (Met == "Depo-Provera")
+                            {
+                                <p>
+                                    1. Delayed injections: Depo-Provera injections should be given every 12 weeks for maximum effectiveness. If a dose is delayed, the effectiveness may be reduced.</p>
+                                    <p>
+                                    2. Medications: Some medications can reduce the effectiveness of Depo-Provera, including certain antibiotics, anti-seizure medications, and medications used to treat HIV.</p>
+                                    <p>
+                                    3. Medical conditions: Certain medical conditions, such as liver disease or uncontrolled diabetes, can affect the effectiveness of Depo-Provera.</p>
+                                    <p>
+                                    4. Weight: Some studies suggest that Depo-Provera may be less effective for individuals who are overweight or obese.</p>
+                                    <p>
+                                    5. Failure to follow instructions: It is important to receive Depo-Provera injections in the correct location and according to the recommended dosing schedule for maximum effectiveness.</p>
+                               <p>
+                                    It is important to note that no contraceptive method is 100% effective. Always consult with your healthcare provider for personalized advice on how to ensure the effectiveness of Depo-Provera or any other form of birth control.  
+                                </p>
+                            }
+
+                            else if (Met == "Noristerat")
+                            {
+                                <p>
+                                    1. Delayed injections: Noristerat injections should be given every 8 weeks for maximum effectiveness. If a dose is delayed, the effectiveness may be reduced.</p>
+                                    <p>
+                                    2. Medications: Some medications can reduce the effectiveness of Noristerat, including certain antibiotics, anti-seizure medications, and medications used to treat HIV.
+                                    </p>
+                                    <p>
+                                    3. Medical conditions: Certain medical conditions, such as liver disease or uncontrolled diabetes, can affect the effectiveness of Noristerat.
+                                    </p>
+                                    <p>
+                                    4. Weight: Some studies suggest that Noristerat may be less effective for individuals who are overweight or obese.
+                                    </p>
+                                    <p>
+                                    5. Failure to follow instructions: It is important to receive Noristerat injections in the correct location and according to the recommended dosing schedule for maximum effectiveness.
+                                    </p>
+                                    <p>
+                                    It is important to note that no contraceptive method is 100% effective. Always consult with your healthcare provider for personalized advice on how to ensure the effectiveness of Noristerat or any other form of birth control.
+                                    
+                                </p>
+                            }
+                            else if (Met == "Provera")
+                            {
+                                
+                                    <p>1. Incorrect use: Provera pills must be taken at the same time every day to be most effective. If a pill is missed or taken late, it can reduce the effectiveness of the medication.</p>
+
+                                    <p>2. Certain medications: Some medications can interfere with the effectiveness of Provera including certain antibiotics, anti-seizure medications, and medications used to treat HIV.</p>
+
+                                    <p>3. Medical conditions: Certain medical conditions, such as liver disease or uncontrolled diabetes, can affect the effectiveness of Provera.</p>
+
+                                    <p>4. Weight: Some studies suggest that Provera may be less effective for individuals who are overweight or obese.</p>
+
+                                    <p>5. Failure to follow instructions: It is important to take Provera exactly as prescribed by your healthcare provider for maximum effectiveness.</p>
+
+                                   <p>It is important to note that no contraceptive method is 100% effective. Always consult with your healthcare provider for personalized advice on how to ensure the effectiveness of Provera or any other form of birth control.
+                                </p>
+                                <hr />
+                                <p><b>As a reminder:</b></p>
+                                
+                                    <p>1. Take Provera exactly as prescribed by your nurse. The dosage and duration of the medication may vary depending on your medical condition, age, body weight, and other factors.</p>
+
+                                    <p>2. Provera can be taken with or without food. If you experience stomach upset, take it with food.</p>
+
+                                    <p>3. Swallow the tablet whole with a full glass of water. Do not crush, chew, or break the tablet.</p>
+
+                                    <p>4. Take Provera at the same time every day to maintain a consistent level of medication in your body.</p>
+
+                                    <p>5. If you miss a dose, take it as soon as you remember. If it is almost time for your next dose, skip the missed dose and continue with your regular dosing schedule. Do not double the dose to catch up.</p>
+
+                                    <p>6. Store Provera tablets at room temperature, away from heat, moisture, and light.</p>
+
+                                    <p>7. Before taking Provera, tell your doctor if you have a history of blood clots, stroke, or liver disease. Also, let your doctor know if you are pregnant or breastfeeding.
+                                </p>
+                            }
+                            else if (Met == "Annovera")
+                            {
+                                <p>
+                                    1. Incorrect use: Annovera must be inserted and removed according to the instructions provided by your healthcare provider. Failing to follow the instructions, such as leaving the ring in for too long or removing it too early, can affect its effectiveness.</p>
+                                    <p>
+                                    2. Certain medications: Some medications can interfere with the effectiveness of Annovera, such as certain antibiotics, antifungal medications, and anticonvulsant medications. Always inform your healthcare provider of any medications you are taking.</p>
+                                    <p>
+                                    3. Vaginal infections: Having a vaginal infection such as bacterial vaginosis or a yeast infection can interfere with the effectiveness of Annovera.</p>
+                                    <p>
+                                    4. Weight: It is possible that body weight may impact the effectiveness of Annovera. Studies suggest that the ring may be less effective for those individuals who are overweight or obese.</p>
+                                    <p>
+                                    5. Failure to follow instructions: It is important to take Annovera exactly as prescribed by your healthcare provider for maximum effectiveness.</p>
+                             <p>
+                                    No contraceptive method is 100% effective, so it is important to follow instructions carefully and use additional contraception methods such as condoms if needed. Always consult with your healthcare provider for personalized advice on how to ensure effectiveness.
+                                </p>
+                            }
+                        }
+                                else
+                                {
+                            <div>
+                                <label><b>No contraceptive record, Please visit a clinic for contraceptives!</b></label>
+                            </div>
+                                }
+                    }
+                            else
+                            {
+                                <div>
+                                    <label><b>No contraceptive record, Please visit a clinic for contraceptives!</b></label>
+                                </div>
+
+                            }
+                </form>
+
+            </div>
+        </section>
+
+
+    </section>
+</form>
+
+
+

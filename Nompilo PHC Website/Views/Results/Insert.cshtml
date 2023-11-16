@@ -1,0 +1,122 @@
+﻿@model  Nompilo_PHC_Website.Models.TestResult
+@{
+    ViewData["Title"] = "Insert";
+    Layout = "~/Views/Shared/_LabLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<style>
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+    }
+</style>
+<h2 class="bg bg-info text-center"> <i class="fa fa-clipboard" aria-hidden="true" style="font-size:48px;color:forestgreen"></i>Manage Test Results</h2>
+<div class="alert alert-info text-center" role="alert">
+    Provide information for test instruments used in the laboratory
+</div>
+
+@if (ViewBag.successAlert != null)
+{
+    <p class="alert alert-info text-center" role="alert">ViewBag.successAlert</p>
+}
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-12">
+                <input type="hidden" asp-for="status" />
+                <input type="hidden" asp-for="UserId" />
+                <div class="form-group row form-floating">
+                    <div class="col-4">
+                        <label asp-for="Tests"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="TestMethods"></label>
+                    </div>
+
+                </div>
+                <div class="form-group row ">
+                    <div class="col-4">
+                        <select asp-for="testId" class="form-control" asp-items="ViewBag.testId">
+                            <option disabled selected>--Select Test--</option>
+                        </select>
+                        <span asp-validation-for="testId" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="testmethodId" class="form-control" asp-items="ViewBag.testmethodId">
+                            <option disabled selected>--Select Method--</option>
+                        </select>
+                        <span asp-validation-for="testmethodId" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-4">
+                        <label asp-for="date"></label>
+                    </div>
+
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-8">
+                        <input type="date" asp-for="date" class="form-control" aria-required="true" />
+                        <span asp-validation-for="date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-8">
+                        <label asp-for="Result"></label>
+                    </div>
+
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-8">
+                        <input type="text" asp-for="Result" class="form-control" aria-required="true" />
+                        <span asp-validation-for="Result" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row form-floating">
+                    <div class="col-4">
+                        <label asp-for="Description"></label>
+                    </div>
+
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-8">
+                        <textarea asp-for="Description" class="form-control">Enter results description.</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <br /><br />
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Generate Results" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-secondary w-75"><i class="fa fa-table"></i>Go To List</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </form>
+</div>

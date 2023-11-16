@@ -1,0 +1,56 @@
+﻿@model PrenatalPatients
+@{
+    ViewData["Title"] = "Patients";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+<style>
+    #inputes {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size: 18px;
+    }
+</style>
+<h1 id="bookh1">Add Prenantal Patients</h1>
+<form class="card" id="hold" asp-controller="Prenatal" asp-action="AddPatients">
+    <label asp-for="Name"></label>
+    <select asp-for="Name" asp-items="ViewBag.PatientN" aria-required="true" id="inputes">
+        <option disabled selected>---Please select a name----</option>
+    </select>
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <label asp-for="LastName"></label>
+    <select asp-for="LastName" asp-items="ViewBag.PatientL" aria-required="true" id="inputes">
+        <option disabled selected>---Please select a lastname----</option>
+    </select>
+    <span asp-validation-for="LastName" class="text-danger"></span>
+    <label asp-for="Date"></label>
+    <select asp-for="Date" asp-items="ViewBag.PatientD" aria-required="true" id="inputes">
+        <option disabled selected>---Please select a service----</option>
+    </select>
+    <span asp-validation-for="Date" class="text-danger"></span>
+    <label asp-for="Months"></label>
+    <input asp-for="Months" type="number" />
+    <span asp-validation-for="Months" class="text-danger"></span>
+    <label asp-for="Weight"></label>
+    <input asp-for="Weight" type="number" placeholder="Patient weight in Kg's'"/>
+    <span asp-validation-for="Weight" class="text-danger"></span>
+    <label asp-for="Urine"></label>
+    <input asp-for="Urine" type="text" />
+    <span asp-validation-for="Urine" class="text-danger"></span>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" id="showPopupButton">Add Patient</button>
+    <br />
+    <a asp-action="DisplayP" asp-controller="Prenatal" class="w-100 btn btn-lg btn-primary">Display Patient</a>
+
+</form>
+<br />
+<br />
+<br />
+<br />
+<a asp-action="DocDash" asp-controller="Prenatal"><button id="back" class="btn-danger">Back</button></a>
+</body>

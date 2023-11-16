@@ -1,0 +1,140 @@
+﻿@model PaginatedList<Checkup>;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "View Appointments";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+    <h1 id="bookh1">View CheckUps</h1>
+    <form asp-action="CheckUp" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by results Type: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="CheckUp">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <table class="table table-dark">
+
+        @if (Model.Count() > 0)
+        {
+            <thead class="table-primary">
+                <tr>
+
+                    
+                    <th>
+                        <a asp-action="ViewBookings" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date and Time</a>
+
+                    </th>
+                    <th>Condition</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().CheckupDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Weight)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().BloodPressure)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().PrenatalMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Temperature)
+                    </th>
+                    <th>Next Appointment</th>
+                    <th>View Balanced</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckupDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckupDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Weight)
+                            kg
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BloodPressure)
+                        </td>
+                        <td>
+                            @{
+                                if (item.PrenatalMonth != null)
+                                {
+                                    var month = item.PrenatalMonth;
+                                    var monthText = $"{month}{(month == 1 ? "st" : month == 2 ? "nd" : month == 3 ? "rd" : "th")} month";
+                                    @monthText
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.PrenatalMonth)  <!-- Display the value as-is if it's null -->
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Temperature)
+                            °C
+                        </td>
+                        @if (item.CheckupDate != null)
+                        {
+                            DateTime nextDate = item.CheckupDate.AddDays(28);
+                            <td>@nextDate.ToString("yyyy-MM-dd")</td>
+                        }
+                        else
+                        {
+                            <td>N/A</td>
+                        }
+                        <td>
+                            <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-Prenatalmonth="@item.PrenatalMonth">View Balance</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <h2>Sorry you have no active checkup</h2>
+        }
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="CheckUp"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="CheckUp"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+    <div id="popupDiv" class="popup">
+        <p>Appointment successfull canceled!!</p>
+        <button id="closePopupButton" asp-controller="Booking" asp-action="ViewApp">Close</button>
+    </div>
+    <br />
+    <a asp-controller="Prenatal" asp-action="Dashboard"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
+

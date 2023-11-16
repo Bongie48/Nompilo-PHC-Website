@@ -1,0 +1,304 @@
+﻿@{
+    
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<Booking>
+@{
+
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <title>Count Down Room</title>
+    <style>
+        
+         * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            font-weight: 700;
+        }
+
+
+        body{
+            min-height: 900px;
+        }
+        nav{
+        visibility:hidden;
+        
+        }
+        .container {
+            display: flex;
+        }
+
+        .nv {
+            position: absolute;
+           
+            visibility:visible;
+            top: 0px;
+            bottom: 0;
+            height: auto;
+            left: 0;
+            background-color: #0a2a43;
+            width: 270px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            color: white;
+            font-weight: 700px;
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        .nv .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+        }
+      
+    </style>
+</head>
+
+<body class="contnr">
+    <div class="contnr-index nav">
+            <nav class = "nv">
+                <ul>
+                    <li>
+                        <a href="#" class="logo">
+                            <img src="~/css/person.jpg" alt="">
+                            <span class="nav-item">Ndumiso</span>
+                        </a>
+                        <br />
+                    </li>
+
+                    <li>
+                        <a asp-action="Index" asp-controller="Walk">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-item">Home</span>
+                        </a>
+                        <br />
+                    </li>
+
+
+                    <li>
+                        <a asp-action="Doctors" asp-controller="Dr">
+                            <i class="fas fa-star"></i>
+                            <span class="nav-item">Doctors</span>
+                        </a>
+                        <br />
+                    </li>
+
+                    <li>
+                        <a asp-action="Booking" asp-controller="Booking">
+                            <i class="fas fa-star"></i>
+                            <span class="nav-item">Booking</span>
+                        </a>
+                        <br />
+                    </li>
+
+                    <li>
+                       <a asp-action="Info" asp-controller="Walk">
+                        <i class="fas fa-star"></i>
+                        <span class="nav-item">Location</span>
+                         </a>
+                        <br />
+                    </li>
+
+                    <li>
+                        <br />
+                        <br />
+                        <a asp-action="Home" asp-controller="Home" class="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-item">Log out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+         
+      <div class="contnt">
+       
+
+     
+    
+            <br />
+            <br />
+            <br />
+        
+            <h1><span>Appointment</span> Date and <span>Time</span> </h1>
+
+            <div class="launch-time">
+
+                <div>
+
+                    <p id="Days">00</p>
+                    <br />
+                    <br />
+                    <span>Days</span>
+
+                </div>
+
+                <div>
+
+                    <p id="Hours">00</p>
+                    <br />
+                    <br />
+                    <span>Hours</span>
+
+                </div>
+
+                <div>
+
+                    <p id="Minutes">00</p>
+                    <br />
+                    <br />
+                    <span>Minutes</span>
+
+                </div>
+          
+                <div>
+                    <p id="Seconds">00</p>
+                    <br />
+                    <br />
+                    <span>Seconds</span>
+                </div>
+
+            </div>
+            <br />
+            <p>Please arrive 5 minutes early for your Appointment</p>
+
+            <br/>
+            
+          
+            
+            <h1 id="frm">
+           
+                    <iframe  width="50" height="50" src="https://www.youtube.com/embed/UWmGYgl7GIY?si=D-lCiEVtSO75ibjf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+             </h1>
+           
+           
+      
+    </div>
+
+   @* <span>
+                <p>Music</p>
+            </span>
+*@
+    <img src="~/css/rocket.png" class="rocket">
+
+    @foreach(var dt in Model)
+    {
+        if (dt.services == "Walk in's")
+        {
+          <script>
+
+               var countDownDate = new Date("@dt.datetimes").getTime();
+
+               var x = setInterval(function()
+               {
+                 var now = new Date().getTime();
+                 var difference = countDownDate - now;
+
+                var Days = Math.floor(difference / (1000 * 60 * 60 *24));
+                var Hours = Math.floor((difference % (1000 * 60 * 60 *24)) /(1000 * 60 * 60));
+                var Minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                var Seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+
+                document.getElementById("Days").innerHTML = Days
+                document.getElementById("Hours").innerHTML = Hours
+                document.getElementById("Minutes").innerHTML = Minutes
+                document.getElementById("Seconds").innerHTML = Seconds
+
+                if(Minutes ==2 && Seconds == 0 ){
+                    alert("Please prepare come forward to the Dr of your choice")
+                }
+
+                if(difference < 0)
+                {
+                    document.getElementById("Days").innerHTML = "00"
+                    document.getElementById("Hours").innerHTML = "00"
+                    document.getElementById("Minutes").innerHTML = "00"
+                    document.getElementById("Seconds").innerHTML = "00"
+            
+                }
+
+               },1000);
+       
+
+          </script>
+        }
+    }
+</body>
+</html>

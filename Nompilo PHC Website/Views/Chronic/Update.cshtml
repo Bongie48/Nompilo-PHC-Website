@@ -1,0 +1,234 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Booking;
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    @* <link rel="stylesheet" href="~/css/dashboardstyle.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/headingnform.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <style>
+        /* import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+                                    background: #dfe9f5;
+                                }
+                                */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 100vh;
+            left: 0;
+            background-color: #029EFF;
+            /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        section {
+            width: 80%;
+            background-image: url('css/wallchronic.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #backs {
+            background: #eee;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Patientreport">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="nav-item">Checkup Score</span>
+                    </a>
+                </li>
+                <li id="backs">
+                    <a asp-controller="Chronic" asp-action="Patientonlineconsultations">
+                        <i class="fas fa-calendar-week"></i>
+                        <span class="nav-item">Online Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="docTests" asp-action="viewTests">
+                        <i class="fas fa-receipt"></i>
+                        <span class="nav-item">Test Results</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="docTests" asp-action="DisplayPatients">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="nav-item">Patients</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="docTests" asp-action="Test">
+                        <i class="fas fa-send"></i>
+                        <span class="nav-item">Send Samples</span>
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div id="headingchr">
+                <br />
+                <p id="h1chronic">Patient's online appointments</p>
+            </div>
+            <br />
+            <br />
+            <form class="card" id="hold" asp-controller="Chronic" asp-action="Updatestatus">
+                <input asp-for="Id" hidden />
+                <input asp-for="services" hidden/>
+                <label>Patient username:</label>
+                <input asp-for="email" type="email" id="inputes" class="text-muted" readonly />
+                <label>Date and Time:</label>
+                <input asp-for="datetimes" type="datetime-local" id="inputes" class="text-muted" readonly />
+                <label>Status:</label>
+                <select asp-for="status" id="inputes" type="" aria-required="true">
+                    <option disabled selected>---Update appointment status----</option>
+                <option>Approved</option>
+                <option>Decline</option>
+                </select>
+                <span asp-validation-for="status" class="text-danger"></span>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" id="showPopupButton">Opt-in</button>
+            </form>
+            <div id="popupDiv" class="popup">
+                <p>Appointment status successfully updated!</p>
+                <a asp-controller="Chronic" asp-action="Patientonlineconsultations"><button id="closePopupButton">Close</button></a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

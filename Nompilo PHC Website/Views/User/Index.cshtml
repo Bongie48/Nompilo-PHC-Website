@@ -1,0 +1,50 @@
+﻿-@using Nompilo_PHC_Website.Data
+
+@model ICollection<DataGeeksUser>
+
+@{
+    Layout = "FamilyLayout";
+}
+<form class="form-control border-primary" class="row g-3" asp-action="AddUser" style="background-color:whitesmoke">
+<legend class="bg bg-primary text-center rounded-pill"><strong>System Users</strong></legend>
+<br />
+<br />
+<hr />
+<div>
+
+    <p>
+        <a asp-action="AddUser" class="btn btn-primary">Register User</a>
+    </p>
+    @if (Model != null && Model.Any())
+    {
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td scope="col">Name</td>
+                            <td scope="col">Surname</td>
+                            <td scope="col">Email</td>
+                            <td scope="col">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td>@user.Surname</td>
+                                <td>@user.Email</td>
+                                <td><a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+</form>
+

@@ -1,0 +1,87 @@
+﻿@model Nompilo_PHC_Website.Models.Instrument
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LabLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<style>
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+    }
+</style>
+<h2 class="bg bg-info text-center"><i class="fa fa-flask" aria-hidden="true" style="font-size:48px;color:forestgreen"></i>Update Instrument</h2>
+<div class="alert alert-info text-center" role="alert">
+    Provide information to update test instruments used in the laboratory
+</div>
+<div class="container-fluid">
+    <form method="post" class="form" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger" />
+        <div class="row">
+            <div class="col-12">
+                <input type="hidden" asp-for="instrumentId" />
+                <div class="form-group row form-floating">
+                    <div class="col-4">
+                        <label asp-for="name"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tests"></label>
+                    </div>
+
+                </div>
+                <div class="form-group row ">
+                    <div class="col-4">
+                        <input asp-for="name" type="text" class="form-control" aria-required="ttrue" />
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="testId" class="form-control" asp-items="ViewBag.testId">
+                            <option disabled selected>--Select Test--</option>
+                        </select>
+                        <span asp-validation-for="testId" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-4">
+                        <label asp-for="description"></label>
+                    </div>
+
+
+                </div>
+                <div class="form-group row form-floating">
+                    <div class="col-8">
+                        <textarea asp-for="description" class="form-control" aria-required="true">Enter instrument description.</textarea>
+                        <span asp-validation-for="description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <br /><br />
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Submit" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" asp-controller="Instrument" class="btn btn-secondary w-75"><i class="fa fa-table"></i>Go To List</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </form>
+</div>

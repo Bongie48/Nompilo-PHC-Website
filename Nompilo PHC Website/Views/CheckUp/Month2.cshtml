@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 2nd Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 2nd Month</h1>
+   
+
+    <h3>Nutrition</h3>
+    <p>
+        During the 2nd month of pregnancy, it's crucial to continue a healthy diet to support the growth and development of your baby. Focus on the following:
+    </p>
+    <ul>
+        <li>Incorporate more calcium-rich foods such as dairy products or fortified plant-based alternatives.</li>
+        <li>Maintain a balanced intake of carbohydrates, proteins, and healthy fats.</li>
+        <li>Ensure an adequate intake of iron-rich foods like lean meats or legumes.</li>
+        <li>Continue taking prenatal vitamins with the guidance of your healthcare provider.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Staying active is important in the 2nd month of pregnancy. Here are some safe exercises to consider:
+    </p>
+    <ul>
+        <li>Prenatal yoga can help with flexibility and relaxation.</li>
+        <li>Swimming and water aerobics provide low-impact workouts that are gentle on the joints.</li>
+        <li>Regular walking or light jogging can help maintain cardiovascular fitness.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before starting any new exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="3">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="1">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

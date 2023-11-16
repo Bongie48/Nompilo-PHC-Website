@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 7th Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 7th Month</h1>
+   
+    <h3>Nutrition</h3>
+    <p>
+        As you enter the 7th month of pregnancy, your baby's development continues. Focus on maintaining a healthy diet for both you and your baby's well-being:
+    </p>
+    <ul>
+        <li>Ensure a diet rich in calcium, as your baby's bones continue to grow.</li>
+        <li>Consume foods high in fiber to support digestion and reduce constipation.</li>
+        <li>Incorporate iron-rich foods to prevent anemia.</li>
+        <li>Stay hydrated by drinking plenty of water to avoid dehydration.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Staying active in the 7th month is essential for your health and preparing for labor. Consider these safe exercises for pregnant women:
+    </p>
+    <ul>
+        <li>Continue low-impact aerobic exercises like walking or swimming for cardiovascular health.</li>
+        <li>Prenatal yoga and stretching exercises can help with flexibility and relaxation.</li>
+        <li>Kegel exercises to strengthen pelvic floor muscles are beneficial for labor and delivery.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before starting any new exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="8">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="6">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

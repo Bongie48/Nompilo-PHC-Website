@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 1st Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 1st Month</h1>
+
+    <h3>Nutrition</h3>
+    <p>
+        During the 1st month of pregnancy, it's essential to maintain a healthy diet to support the development of your baby. Focus on the following:
+    </p>
+    <ul>
+        <li>Consume a variety of fruits and vegetables for essential nutrients.</li>
+        <li>Ensure an adequate intake of folic acid and prenatal vitamins.</li>
+        <li>Include whole grains and lean proteins in your meals.</li>
+        <li>Stay hydrated by drinking plenty of water.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Regular exercise is crucial to staying healthy during pregnancy. Here are some safe exercises for the 1st month:
+    </p>
+    <ul>
+        <li>Walking or brisk walking is an excellent low-impact choice.</li>
+        <li>Swimming can help reduce joint strain and improve circulation.</li>
+        <li>Prenatal yoga or gentle stretching exercises can improve flexibility and relaxation.</li>
+    </ul>
+
+    <p>
+        Remember to consult your healthcare provider before starting any exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="2">Next Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

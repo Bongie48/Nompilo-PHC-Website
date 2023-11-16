@@ -1,0 +1,240 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Chronicpatients;
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    @* <link rel="stylesheet" href="~/css/dashboardstyle.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/headingnform.css" rel="stylesheet" />
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <style>
+        /* import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+                                                    background: #dfe9f5;
+                                                }
+                                                */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 100vh;
+            left: 0;
+            background-color: #029EFF;
+            /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        section {
+            width: 80%;
+            background-image: url('css/wallchronic.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #backs {
+            background: #eee;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Patientreport">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="nav-item">Checkup Score</span>
+                    </a>
+                </li>
+                <li >
+                    <a asp-controller="Chronic" asp-action="Patientonlineconsultations">
+                        <i class="fas fa-calendar-week"></i>
+                        <span class="nav-item">Online Appointments</span>
+                    </a>
+                </li>
+                <li id="backs">
+                    <a asp-controller="Chronic" asp-action="DisplayPatients">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="nav-item">Patients</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="DocTests" asp-action="Test">
+                        <i class="fas fa-send"></i>
+                        <span class="nav-item">Send Samples</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="GetReport">
+                        <i class="fas fa-file"></i>
+                        <span class="nav-item">Report</span>
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a asp-controller="Chronic" asp-action="DoctorDash" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div id="headingchr">
+                <br />
+                <p id="h1chronic">Add chronic medication patients</p>
+            </div>
+            <br />
+            <br />
+            <form class="card" id="hold" asp-controller="Chronic" asp-action="AddC">
+                <label>First name:</label>
+                <input type="text" asp-for="Name" id="inputes">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <label>Surname:</label>
+                <input type="text" asp-for="Surname" id="inputes">
+                <span asp-validation-for="Surname" class="text-danger"></span>
+                <label>Patient age:</label>
+                <input type="text" asp-for="Age" id="inputes">
+                <span asp-validation-for="Age" class="text-danger"></span>
+                <label>Patient email address:</label>
+                <input type="text" asp-for="Email" id="inputes">
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <label>Diagonosed desease:</label>
+                <input type="text" asp-for="Chronicdisease" id="inputes">
+                <span asp-validation-for="Chronicdisease" class="text-danger"></span>
+                <br />
+                <button class="w-100 btn btn-lg btn-primary" type="submit" id="showPopupButton">Add patient</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
+

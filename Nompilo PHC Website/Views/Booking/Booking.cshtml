@@ -1,0 +1,39 @@
+﻿@model Booking
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Booking";
+    
+}
+<body id="home">
+<br />
+<br />
+<h1 id="bookh1">Book an Appointment</h1>
+<br />
+<form class="card" id="hold" asp-controller="Booking" asp-action="Book">
+    <label>Email:</label>
+    <input asp-for="email" type="email" value="@User.Identity?.Name" readonly /><br />
+      <label>Services:</label>
+    <select asp-for="services" type="" aria-required="true">
+        <option disabled selected>---Please select a service----</option>
+        <option>Walk in's</option>
+        <option>Family planning</option>
+        <option>Pre-NatalCare</option>
+        <option>Chronic medication</option>
+        <option>Chronic medication online</option>
+        <option>Pathology</option>
+    </select><br />
+    <span asp-validation-for="services" class="text-danger"></span>
+    <label>Date and Time:</label>
+    @Html.TextBoxFor(m=>m.datetimes, new{type = "datetime-local"}) 
+    <span asp-validation-for="datetimes" class="text-danger"></span>
+    <input asp-for="status" type="text" value="Pending" hidden/>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" id="showPopupButton">Submit</button>
+</form>
+
+<div id="popupDiv" class="popup">
+    <p>Appointment successfull booked!!</p>
+    @*<button id="closePopupButton">Close</button>*@
+</div>
+<br />
+<a asp-controller="Home" asp-action="Home"><button class="btn-danger" id="back">Back</button></a>
+</body>

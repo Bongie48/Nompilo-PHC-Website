@@ -1,0 +1,492 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model ChronicReport
+@{
+    Layout = null;
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+    int score1 = 0, rimi = 0;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    @* <link rel="stylesheet" href="~/css/dashboardstyle.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/table.css" rel="stylesheet" />
+    <link href="~/css/headingnform.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <style>
+        /* import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /*body {
+                                            background: #dfe9f5;
+                                        }
+                                        */
+        .container {
+            display: flex;
+        }
+
+        nav {
+            position: relative;
+            top: 0px;
+            bottom: 0;
+            height: 100vh;
+            left: 0;
+            background-color: #029EFF;
+            /* background: #fff;*/
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+            }
+
+            .logo span {
+                font-weight: bold;
+                padding-left: 15px;
+                font-size: 18px;
+                text-transform: uppercase;
+            }
+
+        a {
+            position: relative;
+            color: black;
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        section {
+            width: 80%;
+            background-image: url('css/wallchronic.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #backs {
+            background: #eee;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #holds {
+            margin: auto;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            padding: 10px;
+            border-radius: 10px;
+            color: black;
+            text-align: left;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        input {
+            width: 100%;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        label {
+            width: 20%;
+            margin: 8px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="~/css/person.jpg" alt="">
+                        <span class="nav-item">@name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Patientreport">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="nav-item">Checkup Score</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="Patientonlineconsultations">
+                        <i class="fas fa-calendar-week"></i>
+                        <span class="nav-item">Online Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Chronic" asp-action="DisplayPatients">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="nav-item">Patients</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="DocTests" asp-action="Test">
+                        <i class="fas fa-send"></i>
+                        <span class="nav-item">Send Samples</span>
+                    </a>
+                </li>
+                <li id="backs">
+                    <a asp-controller="Chronic" asp-action="GetReport">
+                        <i class="fas fa-file"></i>
+                        <span class="nav-item">Report</span>
+                    </a>
+                </li>
+                
+
+
+
+                <li>
+                    <a asp-controller="Chronic" asp-action="DoctorDash" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div id="headingchr">
+                <br />
+                <p id="h1chronic">Patient Report</p>
+            </div>
+            <br />
+            <br />
+            <form class="card" id="holds" asp-controller="Chronic" asp-action="SearchReport">
+                <div style="display:inline-block">
+                    <label>Email:</label><br />
+                    <input asp-for="@Model.queryReport.Email" type="email" placeholder="exmpl@gmail.com" />
+                </div>
+                <div style="display:inline-block">
+                    <label>Age more than:</label> <br />
+                    <input asp-for="@Model.queryReport.Agemore" type="number" placeholder="64">
+                </div>
+                <div style="display:inline-block">
+                    <label>Age less than:</label> <br />
+                    <input asp-for="@Model.queryReport.Ageless" type="number" placeholder="84" />
+                </div>
+                <div style="display:inline-block">
+                    <label>Disease:</label> <br />
+                    <input asp-for="@Model.queryReport.chronicd" type="text" placeholder="Cancer" />
+                </div>
+
+                <button class="btn" style="cursor:pointer" type="submit"><img src="~/css/search.svg" height="20" width="20" /></button>
+            </form>
+
+            @{
+                 <table id="customers">
+                
+                @if (Model.reports.Count() > 0)
+                {
+                       
+                        <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Age</th>
+                        <th>Chronic Disease</th>
+                        <th>Patient lst score</th>
+                        <th>Opted in for reminder</th>
+                        </tr>
+                    foreach (var query in Model.reports)
+                    {
+                            if(query.Email == null)
+                            {
+                                query.Email = "Nothing@gmail.com";
+                            }
+                            if(query.chronicd == null)
+                            {
+                                query.chronicd = "Nothing";
+                            }
+                        foreach(var part in Model.Chrcpatients)
+                        {
+                            if (part.Email.ToLower() ==  query.Email.ToLower())
+                            {
+                               <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                        @foreach(var score in Model.Scores)
+                                        {
+                                            if (part.Email.ToLower() == score.Email.ToLower())
+                                            {
+                                                score1 = score.value;
+                                            }
+                                        }
+                                    <td>@score1</td>
+                                        @foreach (var reminder in Model.Rem)
+                                        {
+                                            if (part.Email.ToLower() == reminder.email.ToLower())
+                                            {
+                                                rimi = 1;
+                                            }
+                                        }
+                                        @if(rimi>0){
+                                        <td>Yes</td>
+                                        }
+                                        else{
+                                        <td>No</td>
+                                        }
+                               </tr>  
+                            }
+                            else if (query.Ageless > part.Age && query.Ageless != 0)
+                            {
+                                <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                    @foreach (var score in Model.Scores)
+                                    {
+                                        if (part.Email.ToLower() == score.Email.ToLower())
+                                        {
+                                            score1 = score.value;
+                                        }
+                                    }
+                                    <td>@score1</td>
+                                    @foreach (var reminder in Model.Rem)
+                                    {
+                                        if (part.Email.ToLower() == reminder.email.ToLower())
+                                        {
+                                            rimi = 1;
+                                        }
+                                    }
+                                    @if (rimi > 0)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                </tr>
+                            }
+                            else if (query.Agemore < part.Age && query.Agemore!=0)
+                            {
+                                <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                    @foreach (var score in Model.Scores)
+                                    {
+                                        if (part.Email.ToLower() == score.Email.ToLower())
+                                        {
+                                            score1 = score.value;
+                                        }
+                                    }
+                                    <td>@score1</td>
+                                    @foreach (var reminder in Model.Rem)
+                                    {
+                                        if (part.Email.ToLower() == reminder.email.ToLower())
+                                        {
+                                            rimi = 1;
+                                        }
+                                    }
+                                    @if (rimi > 0)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                </tr>
+                            }
+                            else if (query.chronicd.ToLower() == part.Chronicdisease.ToLower())
+                            {
+                                <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                    @foreach (var score in Model.Scores)
+                                    {
+                                        if (part.Email.ToLower() == score.Email.ToLower())
+                                        {
+                                            score1 = score.value;
+                                        }
+                                    }
+                                    <td>@score1</td>
+                                    @foreach (var reminder in Model.Rem)
+                                    {
+                                        if (part.Email.ToLower() == reminder.email.ToLower())
+                                        {
+                                            rimi = 1;
+                                        }
+                                    }
+                                    @if (rimi > 0)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                </tr>
+                            }
+                            else if (query.chronicd.ToLower() == part.Chronicdisease.ToLower() && query.Agemore > part.Age)
+                            {
+                                <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                    @foreach (var score in Model.Scores)
+                                    {
+                                        if (part.Email.ToLower() == score.Email.ToLower())
+                                        {
+                                            score1 = score.value;
+                                        }
+                                    }
+                                    <td>@score1</td>
+                                    @foreach (var reminder in Model.Rem)
+                                    {
+                                        if (part.Email.ToLower() == reminder.email.ToLower())
+                                        {
+                                            rimi = 1;
+                                        }
+                                    }
+                                    @if (rimi > 0)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                </tr>
+                            }
+                            else if (query.chronicd.ToLower() == part.Chronicdisease.ToLower() && query.Ageless < part.Age)
+                            {
+                                <tr>
+                                    <td>@part.Name</td>
+                                    <td>@part.Surname</td>
+                                    <td>@part.Age</td>
+                                    <td>@part.Chronicdisease</td>
+                                    @foreach (var score in Model.Scores)
+                                    {
+                                        if (part.Email.ToLower() == score.Email.ToLower())
+                                        {
+                                            score1 = score.value;
+                                        }
+                                    }
+                                    <td>@score1</td>
+                                    @foreach (var reminder in Model.Rem)
+                                    {
+                                        if (part.Email.ToLower() == reminder.email.ToLower())
+                                        {
+                                            rimi = 1;
+                                        }
+                                    }
+                                    @if (rimi > 0)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    }
+                }
+                </table>
+                // else
+                // {
+                //     <h2 style="text-align:center">Please at least enter one item to search</h2>
+                // }
+            }
+        </section>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,184 @@
+﻿@model List<Calculator>;
+@{
+    ViewData["Title"] = "Results";
+    DateTime due = new DateTime(2015, 12, 31);
+    foreach(var dt in Model)
+    {
+        due = dt.Conception;
+    }
+    DateTime weeks = DateTime.Today;
+    TimeSpan dates = weeks.Subtract(due);
+    int week = dates.Days / 7;
+    double percent = 0;
+    percent = (double)week / 40;
+    percent = percent * 100;
+    percent = Math.Round(percent, 0);
+    due = due.AddDays(273);
+    int month = due.Month;
+    int day = due.Day;
+    string nameOfmonth = "";
+    if (month == 1)
+    {
+        nameOfmonth = "January";
+    }
+    else if (month == 2)
+    {
+        nameOfmonth = "February";
+    }
+    else if (month == 3)
+    {
+        nameOfmonth = "March";
+    }
+    else if (month == 4)
+    {
+        nameOfmonth = "April";
+    }
+    else if (month == 5)
+    {
+        nameOfmonth = "May";
+    }
+    else if (month == 6)
+    {
+        nameOfmonth = "June";
+    }
+    else if (month == 7)
+    {
+        nameOfmonth = "July";
+    }
+    else if (month == 8)
+    {
+        nameOfmonth = "August";
+    }
+    else if (month == 9)
+    {
+        nameOfmonth = "September";
+    }
+    else if (month == 10)
+    {
+        nameOfmonth = "October";
+    }
+    else if (month == 11)
+    {
+        nameOfmonth = "November";
+    }
+    else if (month == 12)
+    {
+        nameOfmonth = "December";
+    }
+}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
+    <style>
+        h1 {
+            font-weight: bold;
+            font-size: 4rem;
+            color: Black;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        h4{
+            text-align:center;
+        }
+        h2{
+            font-weight:bold;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .cal {
+            display: inline-block;
+            border: .1px solid #CCCAC5;
+            background-color: #FFF;
+            width: 200px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+
+
+        }
+
+            .cal .month {
+                height: 50px;
+                line-height: 50px;
+                font-size: 2rem;
+                text-transform: uppercase;
+                background-color: #E75951;
+                color: #FFF;
+            }
+
+            .cal .date {
+                font-size: 10rem;
+                color: #585858;
+                line-height: 175px;
+            }
+
+        .circle {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            background-color:lightblue;
+            border: 3px solid;
+            border-color:lightcoral;
+            color: #000;
+            text-align: center;
+            font-size: 8rem;
+            color: #585858;
+            margin: 0 auto;
+        }
+
+        hr {
+            background-color: rgb(243, 192, 192);
+            border-top: 3px dotted rgb(10, 53, 245);
+            height: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <h1> Welcome Prenatal Care</h1>
+    </div>
+    <br />
+    <br />
+    <form id="fresult">
+    <h2>YOUR BABY IS DUE:</h2>
+        <br />
+    <div class="cal">
+        <div class="month">@nameOfmonth</div>
+        <div class="date">@day</div>
+    </div>
+     <br />
+     <br />
+     <h4 style="font-family:'Lucida Console'">You are currently</h4>
+    <div class="circle">@week</div><br />
+    <h5>WEEKS PREGNANT</h5>
+    <h7>You are @percent% into your pregnancy</h7><br />
+        @if (percent <= 25)
+        {
+            <progress value="25" max="100">75%</progress>
+        }
+        else if (percent <= 50)
+        {
+            <progress value="50" max="100">75%</progress>
+        }
+        else if (percent <= 75)
+        {
+            <progress value="75" max="100">75%</progress>
+        }
+        else
+        {
+            <progress value="100" max="100">75%</progress>
+        }
+   <p>
+        This is based on the cycle length provided, not an average cycle length of 28 days, however it is still an estimate.
+    </p>
+    <hr />
+    </form>
+    <br />
+    <a asp-controller="Prenatal" asp-action="Calculator"><button class="btn-danger" id="back">Back</button></a>
+
+</body>
+
+
+

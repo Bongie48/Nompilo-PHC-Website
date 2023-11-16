@@ -1,0 +1,50 @@
+﻿@using Nompilo_PHC_Website.ViewModels
+
+@{
+    ViewData["Title"] = "Edit";
+
+}
+@model UserViewModel
+
+<form class="form-control border-primary" style="background-color:whitesmoke" class="row g-3" asp-action="Edit">
+    <legend class="bg bg-primary text-center rounded-pill"><h2><strong>Edit Employee</strong></h2></legend><br /><br />
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="col-md-6">
+        <label asp-for="@Model.Name" class="form-label"></label>
+        <input asp-for="@Model.Name" class="form-control" autocomplete="off" area-required="true">
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div><br />
+    <div class="col-md-6">
+        <label asp-for="@Model.Surname" class="form-label"></label>
+        <input asp-for="@Model.Surname" class="form-control" autocomplete="off" area-required="true">
+        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+    </div><br />
+    <div class="col-md-6">
+        <label asp-for="@Model.Email" class="form-label"></label>
+        <input asp-for="@Model.Email" type="email" class="form-control" autocomplete="off" area-required="true">
+        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+    </div>
+    <span></span>
+
+    @for (var i = 0; i < Model.Roles.Count; i++)
+    {
+        <div class="col-md-12">
+            @Html.CheckBoxFor(s=> Model.Roles[i].Selected )
+            @Html.HiddenFor(s=> Model.Roles[i].Value)
+            @Html.LabelFor(s=> Model.Roles[i].Selected, Model.Roles[i].Text, new {@class="form-check-label" })
+            @Html.HiddenFor(s=> Model.Roles[i].Text)
+        </div>
+    }
+    <span class="text-danger">@ViewBag.Message</span>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-default">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

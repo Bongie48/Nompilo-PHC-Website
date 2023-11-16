@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 3rd Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 3rd Month</h1>
+    
+
+    
+    <h3>Nutrition</h3>
+    <p>
+        During the 3rd month of pregnancy, your baby's development is rapidly progressing. Maintain a healthy diet by focusing on the following:
+    </p>
+    <ul>
+        <li>Increase your intake of nutrient-rich foods like leafy greens, whole grains, and fruits.</li>
+        <li>Continue to include a variety of protein sources such as poultry, fish, and plant-based options.</li>
+        <li>Consume foods rich in folate, like lentils and spinach, to support neural tube development.</li>
+        <li>Stay well-hydrated and drink plenty of water throughout the day.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        Regular exercise remains essential during the 3rd month of pregnancy. Here are some safe exercises to consider:
+    </p>
+    <ul>
+        <li>Prenatal strength training can help maintain muscle tone and strength.</li>
+        <li>Pilates can improve posture and flexibility while being gentle on the body.</li>
+        <li>Deep breathing and relaxation exercises can reduce stress and promote overall well-being.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before starting any new exercise routine or making significant dietary changes.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="4">Next Month</a>
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="2">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>

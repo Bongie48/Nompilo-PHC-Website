@@ -1,0 +1,122 @@
+﻿@model Nompilo_PHC_Website.Models.ContraceptiveRecordN;
+@{
+    ViewData["Title"] = "CRUpdate";
+}
+
+@{
+    Layout = "FBackLayout";
+}
+<form method="post" asp-action="CRUpdate" class="form-control border-primary" style="background-color:whitesmoke">
+    <input asp-for="CRId" hidden />
+    <div asp-validation-summary="ModelOnly"></div>
+    <div style="background-color:dodgerblue;color:white" class="bg bg-dodgerblue text-center rounded-pill">
+        <h1 align="center">
+            <b>
+                Update Patient Record
+                <hr />
+            </b>
+        </h1>
+    </div>
+    <br />
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Weight
+                    </th>
+                    <th>
+                        Last Menstrual Period
+                    </th>
+                    <th>
+                        Method
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <input asp-for="Weight" class="border border-primary" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+
+                </td>
+                <td>
+                    <input asp-for="LastMenstrualPeriod" class="border border-primary" />
+                    <span asp-validation-for="LastMenstrualPeriod" class="text-danger"></span>
+
+                </td>
+                <td>
+                    <input asp-for="Method" class="border border-primary" />
+                    <span asp-validation-for="Method" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="EmailAddres" class="border border-primary" type="hidden" />
+                    <span asp-validation-for="EmailAddres" class="text-danger"></span>
+
+                </td>
+                <td>
+                    <input asp-for="CurrentDate" class="border border-primary" type="hidden" />
+
+                    <span asp-validation-for="CurrentDate" class="text-danger"></span>
+
+                </td>
+                <td>
+                    <input asp-for="BloodPressure" class="border border-primary" type="hidden" />
+                    <span asp-validation-for="BloodPressure" class="text-danger"></span>
+
+                </td>
+                <td>
+                    <input asp-for="TestResults" class="border border-primary" type="hidden" />
+                    <span asp-validation-for="TestResults" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="ReturnDate" class="border border-primary" type="hidden" />
+                    <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                    <input asp-for="IdentityNumber" class="border border-primary" type="hidden" />
+                    <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div align="center">
+
+        <button type="submit" class="btn btn-outline-primary">Edit Patient Record</button>
+
+    </div>
+    <div>
+        <p>
+
+        </p>
+    </div>
+    <div align="center">
+
+        <a asp-controller="FamilyPlanning" asp-action="Index2" class="btn btn-outline-primary ">Cancel</a>
+
+    </div>
+    @*<table align="center">
+    <tr>
+    <th>
+    <a asp-action="Index" class="btn btn-outline-primary ">Back</a>
+    </th>
+    </tr>
+    <tr>
+    <th>
+    <input type="submit" class="btn btn-outline-primary " value="Update" />
+    </th>
+    </tr>
+    </table>*@
+
+</form>
+

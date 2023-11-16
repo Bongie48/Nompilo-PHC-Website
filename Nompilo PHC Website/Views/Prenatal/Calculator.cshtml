@@ -1,0 +1,58 @@
+﻿@model Calculator;
+@{
+    ViewData["Title"] = "Calculator";
+}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
+    <style>
+        h1{
+            font-weight: bold;
+            font-size: 4rem;
+            color: Black;
+            font-family: 'Times New Roman', Times, serif;
+            text-align:center;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        button{
+            border-radius:7px;
+        }
+        #info{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+        <h1> Welcome Prenatal Care</h1>
+</div>
+<br />
+<br />
+<form id="Cal" asp-controller="Prenatal" asp-action="CalculatorSub" method="post">
+        <h2>Pregnancy Due Date Calculator</h2>
+    <label>Date of conception: </label>
+        @Html.TextBoxFor(m=>m.Conception,new{type = "date"})
+        <button class="w-100 btn btn-lg btn-primary" type="submit"><i class="fas fa-calendar-week"></i>Calculate</button>
+        <hr />
+        <p>This is not a diagnosis. The calculations that are provided are estimates based on averages.</p>
+</form>
+<br />
+    <div class="card w-75" id="info">
+        <div class="card-body">
+            <h5 class="card-title">How Soon Can I Take a Pregnancy Test?</h5>
+            <p class="card-text">A missed menstruation cycle is one of the <a href="https://americanpregnancy.org/pregnancy-symptoms/early-signs-of-pregnancy/">earliest signs of pregnancy</a>. That’s why we usually recommend waiting until you’ve missed your period before taking a <a href="https://americanpregnancy.org/getting-pregnant/understanding-pregnancy-tests/">pregnancy test</a>.  If you can’t wait that long and you know the day of your last period we can calculate possible conception and your pregnancy due date.</p>
+        </div>
+    </div>
+    <br />
+    <div class="card w-75" id="info">
+        <div class="card-body">
+            <h5 class="card-title">Did You Get a Positive Test? Here's What to do Next.</h5>
+            <p class="card-text">If you would like to speak to someone about your pregnancy, call us toll free at +27-638-472-023. You can also explore our numerous articles about how to have a <a href="https://americanpregnancy.org/healthy-pregnancy/health-nutrition/">healthy pregnancy</a>.</p>
+        </div>
+    </div>
+    <a asp-controller="Prenatal" asp-action="Dashboard"><button class="btn-danger" id="back">Back</button></a>
+</body>
+

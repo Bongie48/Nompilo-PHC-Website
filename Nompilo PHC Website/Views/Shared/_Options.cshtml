@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Nompilo_PHC_Website.Data
+@inject SignInManager<DataGeeksUser> SignInManager
+@inject UserManager<DataGeeksUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+@*         
+        if (User.Identity?.Name == "kelo@gmail.com" || User.Identity?.Name == "solangathandile@gmail.com")
+        {
+            <li class="nav-item">
+                <a class="nav-link style=" color:burlywood" asp-area="" asp-controller="Home" asp-action="Index">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " style="color:burlywood" asp-area="" asp-controller="" asp-action="">Staff Schedule</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " style="color:burlywood" asp-area="" asp-controller="" asp-action="">Appointments</a>
+            </li>
+        } *@
+
+       
+            <li class="nav-item">
+               
+            @*     <a asp-area="" asp-controller="" asp-action=""><button class="w-100 btn btn-lg btn-primary" id="hbutton">Records</button></a> *@
+               
+            </li>
+            <li class="nav-item">
+
+                <div class="dropdown1">
+                    <button onclick="Booking()" id="dropbtn1">Booking       <i class="arrow down"></i></button>
+                    <div id="myDropdown1" class="dropdown-content1">
+                        <a asp-area="" asp-controller="Booking" asp-action="Booking">Book Appointment</a>
+                        <a asp-area="" asp-controller="Booking" asp-action="ViewApp">View Appointment</a>
+                      
+
+
+                </div>
+                </div>
+
+            </li>
+
+
+            <li class="nav-item">
+
+             <div class="dropdown">
+                    <button onclick="myFunction()" id="dropbtn">Services <i class="arrow down"></i></button>
+             <div id="myDropdown" class="dropdown-content">
+                    <a asp-area="" asp-controller="Walk" asp-action="Index">Walk-In's</a>
+                        <a asp-area="" asp-controller="Prenatal" asp-action="Dashboard">Pre-NatalCare</a>
+                        <a asp-area="" asp-controller="FamilyPlanning" asp-action="FPatient">Family Planning</a>
+                    <a asp-area="" asp-controller="Chronic" asp-action="Chronic">Chronic Medication</a>
+             </div>
+             </div>
+               
+            </li>
+
+       
+
+   }
+    else
+    {
+          <li class="nav-item">
+            <a class="nav-link" style="color:burlywood" asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+            </li>
+    }
+</ul>
+
+
+
+

@@ -1,0 +1,35 @@
+﻿@model Booking;
+@{
+    ViewData["Title"] = "Update";
+}
+<body id="home">
+    <h1 id ="bookh1">Update</h1>
+    <form class="card" id="hold" asp-controller="Booking" asp-action="UpdateSub" method="post">
+       <input asp-for="Id" hidden />
+        <label>Email:</label>
+        <input asp-for="email" type="email" value="@User.Identity?.Name" readonly />
+        <br />
+        <label>Services:</label>
+        <select asp-for="services" type="" aria-required="true">
+            <option disabled selected>---Please select a service----</option>
+            <option>Walk in's</option>
+            <option>Family planning</option>
+            <option>Pre-NatalCare</option>
+            <option>Chronic medication</option>
+            <option>Chronic medication online</option>
+            <option>Pathology</option>
+        </select>
+        <br />
+        <span asp-validation-for="services" class="text-danger"></span>
+        <label>Date and Time:</label>
+        <input asp-for="datetimes" type="datetime-local" />
+        <button class="w-100 btn btn-lg btn-primary" type="submit" id="showPopupButton">Update</button>
+</form>
+    <div id="popupDiv" class="popup">
+        <p>Appointment successfull updated</p>
+        <button id="closePopupButton" asp-controller="Booking" asp-action="ViewApp">Close</button>
+    </div>
+    <br />
+    <a asp-controller="Booking" asp-action="ViewApp"><button id="back" class="btn-danger">Back</button></a>
+</body>
+

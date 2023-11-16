@@ -1,0 +1,146 @@
+﻿@model Combined
+@{
+    ViewData["Title"] = "Report";
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+<body id="home">
+<style>
+    #btn {
+        background: #2196F3;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid grey;
+        float: left;
+        width: 15%;
+    }
+
+    select {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 30%;
+        background: #f1f1f1;
+    }
+
+    form #btn:hover {
+        background: #0b7dda;
+    }
+
+    /* Clear floats */
+    form::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    form {
+        margin: auto;
+        width: 100%;
+    }
+
+</style>
+<h1 id="bookh1">Patients Report</h1>
+<br />
+@foreach (var x in Model.Report)
+{
+    <form asp-action="Report" asp-controller="Prenatal">
+            <select asp-for="@x.Months">
+                <option selected disabled value="0">All Months</option>
+                <option value="1">1 Month</option>
+                <option value="2">2 Months</option>
+                <option value="3">3 Months</option>
+                <option value="4">4 Months</option>
+                <option value="5">5 Months</option>
+                <option value="6">6 Months</option>
+                <option value="7">7 Months</option>
+                <option value="8">8 Months</option>
+                <option value="9">9 Months</option>
+            </select>
+            <select asp-for="@x.Weight">
+                <option selected disabled value="0">All Weight</option>
+                <option value="1">More than 60kg</option>
+                <option value="2">Less than 60kg</option>
+            </select>
+        <button id="btn" type="submit"><img src="~/css/search.svg" height="17" width="17" /> </button>
+    </form>
+    <br />
+    <br />
+    <table class="table table-dark">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Last Name</th>
+                        <th>Months Pregnant</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                @foreach (var preg in Model.Patients)
+                {
+                    if (x.Months == preg.Months && x.Weight == 0)
+                    {
+                    <tr>
+                        <td>@preg.Name</td>
+                        <td>@preg.LastName</td>
+                        <td>@preg.Months</td>
+                        <td>@preg.Weight</td>
+                    </tr>
+                    }
+                    else if (x.Months == preg.Months && x.Weight == 1)
+                    {
+                        if (preg.Weight > 60)
+                        {
+                            <tr>
+                                <td>@preg.Name</td>
+                                <td>@preg.LastName</td>
+                                <td>@preg.Months</td>
+                                <td>@preg.Weight</td>
+                            </tr>
+                        }
+                    }
+                    else if (x.Months == preg.Months && x.Weight == 2)
+                    {
+                        if (preg.Weight < 60)
+                        {
+                            <tr>
+                                <td>@preg.Name</td>
+                                        <td>@preg.LastName</td>
+                                        <td>@preg.Months</td>
+                                        <td>@preg.Weight</td>
+                            </tr>
+                        }
+                    }
+                
+                    else if (x.Months == 0 && x.Weight == 1)
+                    {
+                        if (preg.Weight > 60)
+                        {
+                            <tr>
+                                <td>@preg.Name</td>
+                                <td>@preg.LastName</td>
+                                <td>@preg.Months</td>
+                                <td>@preg.Weight</td>
+                            </tr>
+                        }
+                    }
+                    else if (x.Months == 0 && x.Weight == 2)
+                    {
+                        if (preg.Weight < 60)
+                        {
+                            <tr>
+                                <td>@preg.Name</td>
+                                <td>@preg.LastName</td>
+                                <td>@preg.Months</td>
+                                <td>@preg.Weight</td>
+                            </tr>
+                        }
+                    }
+                }   
+    </table>
+}
+<br />
+<br />
+    <a asp-action="GenerateReport" asp-controller="Prenatal" class="btn btn-primary">Print Report</a>
+<br />
+<br />
+</body>

@@ -1,0 +1,1147 @@
+﻿
+@{
+    ViewData["Title"] = "WorkEthic";
+}
+@{
+    Layout = "FamilyLayout";
+}
+@{
+    
+    string special = "@gmail.com", special1 = "@outlook.com", special2 = "mandela.ac.za", special3 = "@nompilo.co.za";
+    string name = User.Identity?.Name.ToString();
+    if (name.ToLowerInvariant().Contains(special) || name.ToLowerInvariant().Contains(special1) || name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special1))
+    {
+        name = name.Replace(special1, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special2))
+    {
+        name = name.Replace(special2, " ");
+    }
+    else if (name.ToLowerInvariant().Contains(special3))
+    {
+        name = name.Replace(special3, " ");
+    }
+}
+<style>
+    :root {
+        --dk-gray-100: #F3F4F6;
+        
+        --dk-gray-200: #E5E7EB;
+        
+        --dk-gray-300: #D1D5DB;
+        
+        --dk-gray-400: #9CA3AF;
+       
+        --dk-gray-500: #6B7280;
+        
+        --dk-gray-600: #4B5563;
+        --dk-gray-700: #374151;
+        --dk-gray-800: #1F2937;
+        --dk-gray-900: #111827;
+        
+        --dk-dark-bg: #313348;
+        
+        --dk-darker-bg: whitesmoke;
+        
+        --navbar-bg-color: DodgerBlue;
+        
+        --sidebar-bg-color: blue;
+        --sidebar-width: 250px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--dk-darker-bg);
+        /*background-color: whitesmoke;*/
+        font-size: .925rem;
+    }
+
+    #wrapper {
+        margin-left: var(--sidebar-width);
+        transition: all .3s ease-in-out;
+    }
+
+        #wrapper.fullwidth {
+            margin-left: 0;
+        }
+
+
+
+    /** --------------------------------
+             -- Sidebar
+            -------------------------------- */
+
+
+
+    a:hover {
+        background: #eee;
+    }
+
+    #Sa {
+        position: relative;
+        color: rgb(85, 83, 83);
+        font-size: 14px;
+        display: table;
+        width: 280px;
+        padding: 10px;
+    }
+    .logout {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .SideList {
+        position: initial;
+    }
+
+    .Inside:hover {
+        background: #eee;
+        position: relative;
+        color: rgb(85, 83, 83);
+        font-size: 20px;
+        display: table;
+        width: 300px;
+        
+    }
+
+    .sidebar {
+        background-color: var(--sidebar-bg-color);
+        background-color: blue;
+        width: 300px;
+        
+        padding-left: 0px;
+        left: 0;
+    }
+
+        .sidebar .close-aside {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            cursor: pointer;
+            color: #EEE;
+        }
+
+        .sidebar .sidebar-header {
+            border-bottom: 1px solid #2a2b3c
+        }
+
+            .sidebar .sidebar-header h5 a {
+                
+                color: lightblue
+            }
+
+            .sidebar .sidebar-header p {
+                
+                color: lightblue;
+                font-size: .825rem;
+            }
+
+        .sidebar .search .form-control ~ i {
+            
+            color: lightblue;
+            right: 40px;
+            top: 22px;
+        }
+
+        .sidebar > ul > li {
+            padding: .7rem 1.75rem;
+        }
+
+        .sidebar ul > li > a {
+            
+            color: lightblue;
+            text-decoration: none;
+        }
+
+            /* Start numbers */
+            .sidebar ul > li > a > .num {
+                line-height: 0;
+                border-radius: 3px;
+                font-size: 14px;
+                padding: 0px 5px
+            }
+
+        .sidebar ul > li > i {
+            font-size: 18px;
+            margin-right: .7rem;
+            color: var(--dk-gray-500);
+        }
+
+        .sidebar ul > li.has-dropdown > a:after {
+            content: '\eb3a';
+            font-family: unicons-line;
+            font-size: 1rem;
+            line-height: 1.8;
+            float: right;
+            color: var(--dk-gray-500);
+            transition: all .3s ease-in-out;
+        }
+
+        .sidebar ul .opened > a:after {
+            transform: rotate(-90deg);
+        }
+
+        /* Start dropdown menu */
+        .sidebar ul .sidebar-dropdown {
+            padding-top: 10px;
+            padding-left: 30px;
+            display: none;
+        }
+
+            .sidebar ul .sidebar-dropdown.active {
+                display: block;
+            }
+
+            .sidebar ul .sidebar-dropdown > li > a {
+                font-size: .85rem;
+                padding: .5rem 0;
+                display: block;
+            }
+    /* End dropdown menu */
+
+    .show-sidebar {
+        transform: translateX(-270px);
+    }
+
+   
+
+    /** --------------------------------
+             -- welcome
+            -------------------------------- */
+    .welcome {
+        color: var(--dk-gray-300);
+        /*width: 900px*/
+        width: auto
+    }
+
+        .welcome .content {
+            background-color: DodgerBlue;
+        }
+
+        .welcome p {
+            color: var(--dk-gray-400);
+        }
+
+
+
+
+    /** --------------------------------
+             -- Statistics
+            -------------------------------- */
+    .statistics {
+        color: var(--dk-gray-200);
+    }
+
+        .statistics .box {
+            background-color: var(--dk-dark-bg);
+        }
+
+            .statistics .box i {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+            }
+
+            .statistics .box p {
+                color: var(--dk-gray-400);
+            }
+
+
+
+
+    /** --------------------------------
+             -- Charts
+            -------------------------------- */
+    .charts .chart-container {
+        background-color: var(--dk-dark-bg);
+    }
+
+        .charts .chart-container h3 {
+            color: var(--dk-gray-400)
+        }
+
+
+
+
+    /** --------------------------------
+             -- users
+            -------------------------------- */
+    .admins .box .admin {
+        background-color: var(--dk-dark-bg);
+    }
+
+    .admins .box h3 {
+        color: var(--dk-gray-300);
+    }
+
+    .admins .box p {
+        color: var(--dk-gray-400)
+    }
+
+
+
+
+    /** --------------------------------
+             -- statis
+            -------------------------------- */
+    .statis {
+        color: var(--dk-gray-100);
+    }
+
+        .statis .box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+            .statis .box h3:after {
+                content: "";
+                height: 2px;
+                width: 70%;
+                margin: auto;
+                background-color: rgba(255, 255, 255, 0.12);
+                display: block;
+                margin-top: 10px;
+            }
+
+            .statis .box i {
+                position: absolute;
+                height: 70px;
+                width: 70px;
+                font-size: 22px;
+                padding: 15px;
+                top: -25px;
+                left: -25px;
+                background-color: rgba(255, 255, 255, 0.15);
+                line-height: 60px;
+                text-align: right;
+                border-radius: 50%;
+            }
+
+
+
+
+
+    .main-color {
+        color: #ffc107
+    }
+
+    /** --------------------------------
+             -- Please don't do that in real-world projects!
+             -- overwrite Bootstrap variables instead.
+            -------------------------------- */
+
+    .navbar {
+        background-color: var(--navbar-bg-color) !important;
+        border: none !important;
+    }
+
+        .navbar .dropdown-menu {
+            right: auto !important;
+            left: 0 !important;
+        }
+
+        .navbar .navbar-nav > li > a {
+            color: #EEE !important;
+            line-height: 55px !important;
+            padding: 0 10px !important;
+        }
+
+        .navbar .navbar-brand {
+            color: #FFF !important
+        }
+
+        .navbar .navbar-nav > li > a:focus,
+        .navbar .navbar-nav > li > a:hover {
+            color: #EEE !important
+        }
+
+        .navbar .navbar-nav > .open > a,
+        .navbar .navbar-nav > .open > a:focus,
+        .navbar .navbar-nav > .open > a:hover {
+            background-color: transparent !important;
+            color: #FFF !important
+        }
+
+        .navbar .navbar-brand {
+            line-height: 55px !important;
+            padding: 0 !important
+        }
+
+            .navbar .navbar-brand:focus,
+            .navbar .navbar-brand:hover {
+                color: #FFF !important
+            }
+
+        .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+            margin: 0 !important
+        }
+
+
+        .navbar .navbar-nav > li > a {
+            padding-left: 0 !important;
+            float: none;
+        }
+
+    .navbar-nav {
+        margin: 0 !important;
+        float: none;
+    }
+
+    .navbar .navbar-collapse,
+    .navbar .navbar-form {
+        border: none !important;
+        float: none;
+    }
+
+    }
+
+    .navbar .navbar-nav > li > a {
+        float: none !important;
+    }
+
+        .navbar .navbar-nav > li > a > span:not(.caret) {
+            background-color: #e74c3c !important;
+            border-radius: 50% !important;
+            height: 25px !important;
+            width: 25px !important;
+            padding: 2px !important;
+            font-size: 11px !important;
+            position: relative !important;
+            top: -10px !important;
+            right: 5px !important
+        }
+
+    .dropdown-menu > li > a {
+        padding-top: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .navbar .navbar-nav > li > a > i {
+        font-size: 18px !important;
+    }
+
+
+
+
+   
+
+    .statistics .box {
+        margin-bottom: 25px !important;
+    }
+
+    .navbar .navbar-nav .open .dropdown-menu > li > a {
+        color: #CCC !important
+    }
+
+        .navbar .navbar-nav .open .dropdown-menu > li > a:hover {
+            color: #FFF !important
+        }
+
+    .navbar .navbar-toggle {
+        border: none !important;
+        color: #EEE !important;
+        font-size: 18px !important;
+    }
+
+        .navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+            background-color: transparent !important
+        }
+
+    }
+
+
+    ::-webkit-scrollbar {
+        background: transparent;
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #3c3f58;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+        margin: 10px 0 0 10px;
+    }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+</style>
+<script>
+    'use strict'
+
+    function $(selector) {
+        return document.querySelector(selector)
+    }
+
+    function find(el, selector) {
+        let finded
+        return (finded = el.querySelector(selector)) ? finded : null
+    }
+
+    function siblings(el) {
+        const siblings = []
+        for (let sibling of el.parentNode.children) {
+            if (sibling !== el) {
+                siblings.push(sibling)
+            }
+        }
+        return siblings
+    }
+
+    const showAsideBtn = $('.show-side-btn')
+    const sidebar = $('.sidebar')
+    const wrapper = $('#wrapper')
+
+    showAsideBtn.addEventListener('click', function () {
+        $(`#${this.dataset.show}`).classList.toggle('show-sidebar')
+        wrapper.classList.toggle('fullwidth')
+    })
+
+    if (window.innerWidth < 767) {
+        sidebar.classList.add('show-sidebar');
+    }
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 767) {
+            sidebar.classList.remove('show-sidebar')
+        }
+    })
+
+    // dropdown menu in the side nav
+    var slideNavDropdown = $('.sidebar-dropdown');
+
+    $('.sidebar .categories').addEventListener('click', function (event) {
+        event.preventDefault()
+
+        const item = event.target.closest('.has-dropdown')
+
+        if (!item) {
+            return
+        }
+
+        item.classList.toggle('opened')
+
+        siblings(item).forEach(sibling => {
+            sibling.classList.remove('opened')
+        })
+
+        if (item.classList.contains('opened')) {
+            const toOpen = find(item, '.sidebar-dropdown')
+
+            if (toOpen) {
+                toOpen.classList.add('active')
+            }
+
+            siblings(item).forEach(sibling => {
+                const toClose = find(sibling, '.sidebar-dropdown')
+
+                if (toClose) {
+                    toClose.classList.remove('active')
+                }
+            })
+        } else {
+            find(item, '.sidebar-dropdown').classList.toggle('active')
+        }
+    })
+
+    $('.sidebar .close-aside').addEventListener('click', function () {
+        $(`#${this.dataset.close}`).classList.add('show-sidebar')
+        wrapper.classList.remove('margin')
+    })
+
+
+    // Global defaults
+    Chart.defaults.global.animation.duration = 2000; // Animation duration
+    Chart.defaults.global.title.display = false; // Remove title
+    Chart.defaults.global.defaultFontColor = '#71748c'; // Font color
+    Chart.defaults.global.defaultFontSize = 13; // Font size for every label
+
+    // Tooltip global resets
+    Chart.defaults.global.tooltips.backgroundColor = '#111827'
+    Chart.defaults.global.tooltips.borderColor = 'blue'
+
+    // Gridlines global resets
+    Chart.defaults.scale.gridLines.zeroLineColor = '#3b3d56'
+    Chart.defaults.scale.gridLines.color = '#3b3d56'
+    Chart.defaults.scale.gridLines.drawBorder = false
+
+    // Legend global resets
+    Chart.defaults.global.legend.labels.padding = 0;
+    Chart.defaults.global.legend.display = false;
+
+    // Ticks global resets
+    Chart.defaults.scale.ticks.fontSize = 12
+    Chart.defaults.scale.ticks.fontColor = '#71748c'
+    Chart.defaults.scale.ticks.beginAtZero = false
+    Chart.defaults.scale.ticks.padding = 10
+
+    // Elements globals
+    Chart.defaults.global.elements.point.radius = 0
+
+    // Responsivess
+    Chart.defaults.global.responsive = true
+    Chart.defaults.global.maintainAspectRatio = false
+
+    // The bar chart
+    var myChart = new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+            datasets: [{
+                label: "Lost",
+                data: [45, 25, 40, 20, 60, 20, 35, 25],
+                backgroundColor: "#0d6efd",
+                borderColor: 'transparent',
+                borderWidth: 2.5,
+                barPercentage: 0.4,
+            }, {
+                label: "Succes",
+                startAngle: 2,
+                data: [20, 40, 20, 50, 25, 40, 25, 10],
+                backgroundColor: "#dc3545",
+                borderColor: 'transparent',
+                borderWidth: 2.5,
+                barPercentage: 0.4,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {},
+                    ticks: {
+                        stepSize: 15,
+                    },
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    }
+                }]
+            }
+        }
+    })
+
+    // The line chart
+    var chart = new Chart(document.getElementById('myChart2'), {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
+            datasets: [{
+                label: "My First dataset",
+                data: [4, 20, 5, 20, 5, 25, 9, 18],
+                backgroundColor: 'transparent',
+                borderColor: '#0d6efd',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }, {
+                label: "Month",
+                data: [11, 25, 10, 25, 10, 30, 14, 23],
+                backgroundColor: 'transparent',
+                borderColor: '#dc3545',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }, {
+                label: "Month",
+                data: [16, 30, 16, 30, 16, 36, 21, 35],
+                backgroundColor: 'transparent',
+                borderColor: '#f0ad4e',
+                lineTension: .4,
+                borderWidth: 1.5,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        drawBorder: false
+                    },
+                    ticks: {
+                        stepSize: 12,
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    },
+                }]
+            }
+        }
+    })
+
+    var chart = document.getElementById('chart3');
+    var myChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: ["One", "Two", "Three", "Four", "Five", 'Six', "Seven", "Eight"],
+            datasets: [{
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#d9534f',
+                borderWidth: 1.5,
+                showLine: true,
+                data: [3, 30, 16, 30, 16, 36, 21, 40, 20, 30],
+                backgroundColor: 'transparent'
+            }, {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#5cb85c',
+                borderWidth: 1.5,
+                data: [6, 20, 5, 20, 5, 25, 9, 18, 20, 15],
+                backgroundColor: 'transparent'
+            },
+            {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#f0ad4e',
+                borderWidth: 1.5,
+                data: [12, 20, 15, 20, 5, 35, 10, 15, 35, 25],
+                backgroundColor: 'transparent'
+            },
+            {
+                label: "Lost",
+                lineTension: 0.2,
+                borderColor: '#337ab7',
+                borderWidth: 1.5,
+                data: [16, 25, 10, 25, 10, 30, 14, 23, 14, 29],
+                backgroundColor: 'transparent'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        drawBorder: false
+                    },
+                    ticks: {
+                        stepSize: 12
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    },
+                }],
+            }
+        }
+    })
+
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-auto" id="show-side-navigation1" style="padding-left:0px; background-color:#029EFF;" align="left">
+    <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+    <div class="sidebar-header d-flex justify-content-left align-items-center px-3 py-4">
+        <a href=# class="logo"><img src="~/css/medical-logo.jpg" alt="" /></a>
+        <div class="ms-2">
+            <h5 class="fs-6 mb-0">
+                <a class="text-decoration-none" href="#" style="font-size:10px;color:black;font-size:20px"><b>@name</b></a>
+            </h5>
+
+        </div>
+    </div>
+    <ul class="categories list-unstyled">
+
+    <li class="SideList" >
+    
+        
+            <a class="Inside" class="btn-outline-primary" style="color:black;position: relative" asp-area="" asp-controller="FamilyPlanning" asp-action="FNurse" id="Sa"><i class="fas fa-home"> </i> Home</a>
+     </li>
+      <li class="SideList">
+
+                <a class="Inside" class="btn-outline-primary" style="color:black" asp-area="" asp-controller="FamilyPlanning" asp-action="PregRes" id="Sa"><i class="fa fa-plus-square"></i> Add Patient Contraceptive Record</a>
+    </li>
+     <li class="SideList">
+
+                <a class="Inside" class="btn-outline-primary" style="color:black" asp-area="" asp-controller="FamilyPlanning" asp-action="Index3" id="Sa"><i class="fa fa-file-pdf-o"></i> View Patient Report</a>
+            </li>
+    <li class="SideList">
+
+            <a class="Inside" class="btn-outline-primary" style="color:black;background-color:#DCDCDC;" asp-area="" asp-controller="FamilyPlanning" asp-action="WorkEthic" id="Sa"><i class="fas fa-star"></i> Work Ethics</a>
+
+    </li>
+        
+        
+    
+    <li class="logout">
+
+        <div class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link "  style="color:black">Logout</button>
+            </form>
+        </div>
+
+    </li>
+
+
+
+
+    </ul>
+</aside>
+
+<section id="wrapper">
+   
+
+     <div class="p-4">
+        <div class="welcome">
+            <div class="content rounded-3 p-3">
+                <h1 class="fs-3" style="color:white;text-align:left">Family<i class="main-color">Planning</i></h1>
+               
+             
+            </div>
+        </div>
+    </div>
+    <section class="charts mt-4">
+        <div class="chart-container p-3" style="background-color:lightgray;">
+            <form method="post" asp-controller="FamilyPlanning" asp-action="Serv" class="form-control border-primary" style="background-color:whitesmoke">
+    <div style="background-color:dodgerblue;color:white">
+        <h1 align="center">
+            <b>
+                Work Ethic
+
+            </b>
+        </h1>
+    </div>
+    <hr />
+
+    
+  <p>
+    <h2>1. PREAMBLE</h2>
+    Ethics is an integral part of the nursing profession and forms the foundation
+    thereof. This Code of Ethics for Nursing in South Africa reminds all Nursing
+    Practitioners of their responsibilities towards individuals, families, groups and
+    communities, namely to protect, promote and restore health, to prevent illness,
+    preserve life and alleviate suffering. These responsibilities will be carried out with
+    the required respect for human rights, which include cultural rights, the right to
+    life, choice and dignity without consideration of age, colour, creed, culture,
+    disability or illness, gender, sexual orientation, nationality, politics, race or social
+    status. The persons in the care of every Nursing Practitioner must be able to trust
+    such Nursing Practitioner with their health and wellbeing.
+    This Code of Ethics also serves as a declaration by nurses that they will always
+    provide due care to the public and healthcare consumers to the best of their
+    ability while supporting each other in the process. It is premised on the belief
+    that the nursing profession embraces respect for life, human dignity and the
+    rights of other persons.
+    The Code of Ethics does not only provide guidance to nurses in the process of
+    their ethical decision-making, but is a binding document the content of which
+    must be complied with. While the Code of Ethics provides ethical direction
+    within which a Nursing Practitioner’s practice should be framed, it will not
+    provide solutions for day-to-day ethical dilemmas in practice, but the individual
+    nurse practitioner will often need to rely on his/her own personal integrity to
+    make the right decisions.
+    As the Code is premised on the principles of respect for life, human dignity and
+    the rights of other persons, its application is to be considered in conjunction
+    with all applicable South African laws as well as international policy documents
+    which include, but are not limited to the Universal Declaration of Human Rights,
+    International Council of Nurses (ICN) Code of Ethics, the Patients’ Rights
+    Charter and all other nursing and healthcare policy frameworks providing
+    direction and guidance for responsible practice in nursing.
+    </p>
+    <h2>2. PURPOSE STATEMENT</h2>
+    
+  <p>
+    This Code of Ethics is the foundation of ethical decision-making and is aimed
+    at informing Nursing Practitioners and the public of the following ethical and
+    moral principles applicable to Nurse Practitioners in the performance of their
+    duties.
+    <br />
+        <label>
+            &#x27A4; It assists both the practitioners and healthcare users with:
+            identifying ethical values and principles that form the foundation for
+            professional conduct;
+        </label>
+        <label>
+            &#x27A4; providing the framework for reflection on the influence of ethical values on
+            the behaviour and interaction between nurses and the public,
+            stakeholders and healthcare users;
+        </label>
+        <br/>
+        <label>
+            &#x27A4;  providing the framework for ethical decision-making for practice;
+        </label>
+        <br/>
+        <label>
+            &#x27A4;      and ethical values they can expect nurses to uphold; and
+
+        </label>
+        <br/>
+        <label>
+            &#x27A4; and indicating to the public, stakeholders and healthcare users the standards
+            providing guidance to professional conduct or ethical committees
+            regarding decisions relating to unethical behaviour.
+
+        </label>
+        <br />
+
+
+        
+    As professionals, Nursing Practitioners will be personally accountable for all
+    actions and omissions while carrying out their responsibilities in their profession
+    and must always be able to justify all decisions taken and carried out.
+  </p>
+  <p>
+    <h2>3. ETHICAL PRINCIPLES</h2>
+    Inherent in ethical decision-making is the application of ethical values and
+    principles in difficult and conflicting situations that nurses may face in specific
+    circumstances during the practice of their profession. Nurses are at all times
+    expected to observe and apply fundamental ethical principles in their
+    interaction with healthcare users. Such ethical principles include, but are not
+    limited to the following:
+    <label>
+        &#x27A4; (Social) Justice – Nurses are at all times expected to act fairly and
+        equitably where there is competition of interest among parties, groups or
+        individuals. Such interests may be, amongst others, related to access of
+        healthcare resources, issues linked to prioritising care or any situation that
+        may be perceived or experienced as unequal. Nurses should therefore
+        pursue justice and advocate on behalf of vulnerable and disadvantaged
+        healthcare users and should be able to justify their decisions and actions.
+
+    </label>
+    <br />
+    <label>
+        &#x27A4; Non-maleficence – This requires a nurse to consciously refrain from doing
+        harm of any nature whatsoever to healthcare users, individuals, groups
+        and communities.
+
+    </label>
+    <br/>
+    <label>
+        &#x27A4; Beneficence – Nurses are required to do good and to choose the “best
+        option” of care under given circumstances and act with kindness at all
+        times. It gives expression to compliance with the “duty to care” as a
+        professional practice imperative.
+
+    </label>
+    <br />
+    <label>
+        &#x27A4; Veracity – This principle requires the nurse to act with truthfulness and
+        honesty and to ensure that the information provided to and on behalf of
+        the healthcare user is always in the best interest of the healthcare user.
+
+    </label>
+    <br />
+    <label>
+        &#x27A4; Fidelity – This entails adherence to factual and truthful accounting and
+        balancing that with respecting, protecting and maintaining confidential
+        information pertaining to the delivery of healthcare, including health
+        records of healthcare users.
+
+    </label>
+    <br />
+    <label>
+        &#x27A4;  Altruism – Nurses are at all times expected to show concern for the welfare
+        and wellbeing of healthcare users. The nurses are to be mindful of the fact
+        that wishes and actions of healthcare users may be in conflict with the
+        values and principles of the code, e.g. where healthcare users refuse
+        treatment to the detriment of their health and that of others.
+
+    </label>
+    <br />
+    <label>
+        &#x27A4;  Autonomy – Respect for the autonomy of eligible persons (healthcare
+        users) to make their own decisions and choices in matters affecting their
+        health.
+    </label>
+    <br />
+    <label>
+        &#x27A4;  Caring – Nurses are required to demonstrate the art of nurturing by both
+        applying professional competencies and positive emotions that will
+        benefit both the nurse and the healthcare user with inner harmony.
+        These Ethical Principles have to be upheld at all times by all Nursing
+        Practitioners in whatever role they fulfil as direct or indirect patient care
+        providers, including, amongst others, educators, administrators, researchers,
+        policy developers and others, in any setting whatsoever.
+    </label>
+    <br />
+
+</p
+    <p>
+    <h2>4. VALUE STATEMENT</h2>
+    This Code is based on the belief that nurses value:
+    <br/>
+    <label>&#x27A4; human life;</label>
+    <br/>
+    <label>&#x27A4; respect, dignity and kindness for oneself and others;</label>
+    <br/>
+    <label>
+        &#x27A4; the uniqueness of individual healthcare users and also acknowledge the
+        diversity of people in their care;
+    </label>
+    <br/>
+    <label>
+        &#x27A4; the right to access to quality nursing and healthcare for all;
+    </label>
+    <br/>
+    <label>
+        &#x27A4; the provision of accurate and truthful information in accordance with
+        informed consent or refusal of treatment to enable individuals to make
+        informed decisions inrespect of matters affecting their health;
+    </label>
+    <br/>
+    <label>
+        &#x27A4; integrity of persons in their care as well as the image of the profession;
+        confidentiality and privacy of personal information and belongings of
+        healthcare users;
+    </label>
+    <br/>
+    <label>
+        &#x27A4; and a culture of safety and an ethically-friendly environment, which includes
+        the protection of healthcare users from colleagues who may be unfit to
+        practise due to impairment or disability, posing a threat to the health and
+        wellbeing of healthcare users.
+    </label>
+    <br/>
+    </p>
+
+
+
+    
+    
+     <p>
+    <h2>5. IMPLEMENTATION</h2>
+    The Code is a formal document published and used by the South African
+    Nursing Council. It is binding upon all Nurse Practitioners of all categories of
+    persons registered under the Act. It is therefore incumbent upon all practitioners
+    to familiarise themselves with the content of the Code of Ethics as it will form the
+    basis for moral and ethical decisions taken, which will have a bearing on their
+    professional conduct towards healthcare consumers. The practitioner therefore
+    has to be mindful of certain dynamics related to the application of the Code,
+    such as interpersonal/intergroup relationships inherent in their professional
+    practice.
+    Changes in the health practice environment often cause decision-making
+    processes to be challenging and demanding. This will imply that the Code will
+    also have to be reviewed regularly. It is the responsibility of every individual
+    Nursing Practitioner to stay abreast of any changes to this Code.<br />
+    <h3>5.1 RELATIONSHIPS INHERENT IN THE APPLICATION OF THE
+    CODE OF ETHICS</h3>
+    This Code identifies and indicates to all parties the ethical values that are
+    inherent in professional conduct and that form the foundation thereof. It
+    further provides the framework for decision-making in professional
+    practice and for professional interaction between practitioners, the public
+    and healthcare users. Ethical values are integrated in and impact directly
+    on the interaction and the relationships that the nurse has with self and
+    others, including fellow nurses, members of the broader health team and
+    healthcare users. Such interactions and relationships include the
+    following:
+    <br/>
+    5.1.1 Nursing Practitioner in own individual capacity (Self)
+    Each nurse needs to identify and acknowledge his/her own personal
+    values that form the basis for ethical decision-making, which
+    subsequently informs professional conduct. It is essential that these
+    ethical values are acceptable and not in conflict with the ethical
+    principles and values set by the profession. A nurse practitioner has to
+    be an advocate for those in his/her care and this calls for an ability to
+    work effectively within a multidisciplinary team.
+    <br/>
+    5.1.2 Healthcare Users
+    Healthcare users refer to persons requiring or receiving healthcare,
+    treatment, advice, information or other health-related services.
+    Practitioners are required to uphold ethical values of the profession
+    when confronted by diverse situations.
+    <br/>
+    5.1.3 Colleagues
+    Colleagues refer to other nursing practitioners, students, members of
+    an interdisciplinary health team, support staff and employers in the
+    working environment as well as all other individuals who are
+    considered as colleagues. Ethical principles must be applied not only
+    in the interaction between the nurse and healthcare users, but also
+    between the nurse and other colleagues, regardless of hierarchical
+    status, level of knowledge or professional discipline.
+    <br/>
+    5.1.4 Community
+    Community refers to the South African society as a whole, regardless of
+    geographical location, group affiliation, ethnicity, religious belief,
+    gender, age or sexual orientation. Integral to communities are different
+    values, perceptions, levels of knowledge, beliefs, attitudes and
+    practices. Nurses, amidst diverse cultural and social practices, are
+    required to mitigate harmful cultural practices by communicating and
+    educating communities within the ambits of their competencies, using
+    ethical values as a starting point and foundation upon which to fulfil
+    their duty to care.<br />
+    <h3>5.2 ETHICAL DILEMMAS INHERENT IN THE APPLICATION/
+    IMPLEMENTATION OF THE CODE OF ETHICS</h3>
+    The following is a non-exhaustive list of examples of ethical dilemmas that
+    confront nurses in their work environment and sometimes challenge their
+    own value systems:
+    <br/>
+    5.2.1 Termination of pregnancy;<br />
+    5.2.2 trading of products of conception and other human parts;<br />
+    5.2.3 participation in and/or conducting clinical research;<br />
+    5.2.4 providing healthcare and specifically nursing care to
+    vulnerable, stigmatised and marginalised persons;<br />
+    
+    5.2.6 conscientious objection, meaning entitlement to consciously
+    refuse to participate in activities and treatment that nurses
+    believe, on religious or moral grounds, are unacceptable
+    and/or questionable, ethically, morally and legally;<br />
+    5.2.7 situations of conflicting values (diverse cultures, sexual
+    orientation, etc.);<br />
+    5.2.8 conflicts between individual, social and professional values;<br />
+    5.2.9 participating in moonlighting activities and in so doing,
+    compromising the nurse’s ability to provide quality care;<br />
+    5.2.10 euthanasia;<br />
+    5.2.11 intimidation and violent acts in the workplace; and<br/>
+    5.2.12 participating during strikes and boycotts and in so doing,
+    compromising quality nursing care.<br />
+    The nature of ethical dilemmas is often complex and controversial.
+    It may be advisable wherever possible, to make some of the decisions
+    within an ethical committee where diverse values, perceptions and views
+    are taken into consideration by a collective. The more diverse the group in
+    such an ethical committee, the more ethically and morally sound the
+    decision will be. This will be relative to the urgency of the situation requiring
+    the decision-making.<br />
+    <h3>5.3. APPLICATION AND SANCTIONS</h3>
+    Practitioners must refer to the relevant legislative frameworks, standards for
+    practice, competency framework as well as the scope of practice of the
+    profession. The Code is binding upon all practitioners and is enforced by
+    the Professional Conduct Committee which Committee hears matters
+    where unprofessional conduct arises from poor ethical decision-making
+    or the lack of good ethical decision-making.
+    Failure to adhere to the provisions of the Code or violations thereof,
+    attracts the same sanctions as those of non- adherence to the
+    regulations/rules regarding acts and omissions and may bring the
+    Nursing Practitioner’s fitness to practice into question and endanger
+    his/her registration to practice.
+  </p>
+</p>
+</form>
+
+
+        </div>
+
+    </section>
+    
+</section>
+
+@*<p>This serve as a reference that I copied the paragraphs above from an external website. The paragraph below was copied from the following website: </p>
+<p>https://www.sanc.co.za/wp-content/uploads/2021/04/Code-of-Ethics-for-Nursing-in-South-Africa.pdf</p>*@
+

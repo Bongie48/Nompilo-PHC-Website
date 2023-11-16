@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Prenatal Care - 9th Month";
+}
+<body id="home">
+    <h1 id="bookh1">Prenatal Care - 9th Month</h1>
+   
+    <h3>Nutrition</h3>
+    <p>
+        Congratulations! You've reached the final month of your pregnancy. It's crucial to focus on maintaining a balanced diet to support your health and your baby's well-being during this time:
+    </p>
+    <ul>
+        <li>Continue to consume a variety of nutrient-rich foods, including fruits, vegetables, and whole grains.</li>
+        <li>Ensure you're getting enough protein for your baby's growth and repair.</li>
+        <li>Stay hydrated by drinking enough water to support amniotic fluid and overall well-being.</li>
+    </ul>
+
+    <h3>Exercises</h3>
+    <p>
+        In your 9th month, you should focus on gentle exercises and relaxation techniques to prepare for labor and childbirth. Consider the following exercises:
+    </p>
+    <ul>
+        <li>Gentle prenatal yoga or stretching to maintain flexibility and reduce stress.</li>
+        <li>Deep breathing exercises to help you stay calm and focused during labor.</li>
+        <li>Walking to stay active and improve circulation.</li>
+    </ul>
+
+    <p>
+        Always consult with your healthcare provider before beginning or modifying your exercise routine and adhere to any specific dietary guidelines provided by your doctor. As you approach your due date, be prepared and follow any instructions for the upcoming childbirth process.
+    </p>
+
+    <a asp-controller="Checkup" asp-action="ViewByMonth" asp-route-PrenatalMonth="8">Previous Month</a>
+
+    <br />
+    <a asp-controller="Booking" asp-action="ViewBookings"><button id="button1" class="btn-danger">Back</button></a>
+
+</body>
