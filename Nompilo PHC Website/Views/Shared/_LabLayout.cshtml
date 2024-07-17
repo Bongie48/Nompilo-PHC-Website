@@ -2,7 +2,8 @@
 
 @{
     string special = "@gmail.com", special1 = "@outlook.com", special2 = "@mandela.ac.za", special3 = "@nompilo.co.za";
-    string name = User.Identity?.Name.ToString();
+    string name = "";
+    //name = User.Identity?.Name.ToString();
     if (name.ToLowerInvariant().Contains(special))
     {
         name = name.Replace(special, " ");
